@@ -24,3 +24,7 @@ button:disabled {
 #error404Container {
   margin: 20px;
 }
+
+#insertion-sort {
+  background-image: url("insertion-sort.gif");
+}

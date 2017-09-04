@@ -23,6 +23,7 @@ import {
   endSorting,
   addStep,
   toggleSteps,
+  toggleAnimation,
   toggleDescription,
   reset,
   setSortedArray,
@@ -33,6 +34,7 @@ const mapStateToProps = state => ({
   sorting: state.sort.sorting,
   steps: state.sort.steps,
   showSteps: state.sort.showSteps,
+  showAnimation: state.sort.showAnimation,
   showDescription: state.sort.showDescription,
   unsortedArray: state.sort.unsortedArray,
   sortedArray: state.sort.sortedArray
@@ -46,11 +48,15 @@ const mapDispatchToProps = dispatch => bindActionCreators({
   addStep,
   reset,
   toggleSteps,
+  toggleAnimation,
   toggleDescription,
   setSortedArray
 }, dispatch)
 
 const styles = {
+  animation: {
+    display: 'block'
+  },
   container: {
     margin: 10
   },
@@ -115,11 +121,15 @@ const styles = {
     minHeight: 1
   },
   showHideSteps: {
-    width: 150
+    width: 160,
+    marginRight: 10
+  },
+  showHideAnimation: {
+    width: 160,
+    marginRight: 10
   },
   logSteps: {
-    width: 150,
-    marginLeft: 10
+    width: 160,
   },
   reset: {
     marginLeft: 10
@@ -132,6 +142,12 @@ class Sort extends Component {
     validArray: true,
     unsortedArray: [5, 1, 4, 2, 3],
     unsortedArrayStr: '[5, 1, 4, 2, 3]'
+    // unsortedArray: [6, 5, 3, 1, 8, 7, 2, 4],
+    // unsortedArrayStr: '[6, 5, 3, 1, 8, 7, 2, 4]'
+  }
+
+  componentWillUnmount() {
+    this.reset()
   }
 
   handleUnsortedArrayChange = event => {
@@ -145,6 +161,7 @@ class Sort extends Component {
         validArray = false
       }
     }
+    this.resetGif('animation')
     this.setState({
       validArray: validArray,
       unsortedArray: validArray,
@@ -158,8 +175,6 @@ class Sort extends Component {
     this.props.addStep(step)
   }
 
-  // let arr = [5, 3, 1, 2, 4]
-  // let arr = [6, 5, 3, 1, 8, 7, 2, 4]
   handleSortClick = () => {
     let arr = this.state.unsortedArray.slice(0)
 
@@ -181,15 +196,27 @@ class Sort extends Component {
     this.props.toggleSteps()
   }
 
+  handleShowHideAnimationClick = () => {
+    this.resetGif('animation')
+    this.props.toggleAnimation()
+  }
+
   handleLogStepsClick = () => {
     this.logSteps(this.props.steps)
   }
 
   handleResetClick = () => {
+    this.reset()
+  }
+
+  reset = () => {
+    this.resetGif('animation')
     this.setState({
       validArray: true,
       unsortedArray: [5, 1, 4, 2, 3],
       unsortedArrayStr: '[5, 1, 4, 2, 3]'
+      // unsortedArray: [6, 5, 3, 1, 8, 7, 2, 4],
+      // unsortedArrayStr: '[6, 5, 3, 1, 8, 7, 2, 4]'
     })
 
     this.props.reset()
@@ -277,8 +304,27 @@ class Sort extends Component {
     )
   }
 
+  resetGif = (id) => {
+    // reset an animated gif to start at first image without reloading it from server.
+    // Note: if you have the same image on the page more than ones, they all reset.
+    const img = document.getElementById(id)
+    if (img) {
+      // let imageUrl = img.src
+      img.class = ''
+      img.src = ''
+      // img.src = imageUrl
+    }
+  }
+
   render() {
     const classes = this.props.classes
+
+    let showAnimation = false
+    if (this.props.steps) {
+      showAnimation = [6, 5, 3, 1, 8, 7, 2, 4].toString() === this.state.unsortedArray.toString()
+    }
+
+    const propsShowAnimation = Boolean(this.props.showAnimation % 2)
 
     return (
       <div>
@@ -287,7 +333,7 @@ class Sort extends Component {
         <div className={classes.container}>
           <h2 className={classes.title} onClick={this.handleToggleDescriptionClick}>Insertion Sort</h2>
           {this.props.showDescription && <div>
-            <p>Insertion sort iterates, consuming one input element each repetition, and growing a sorted output list. At each iteration, insertion sort removes one element from the input data, finds the location it belongs within the sorted list, and inserts it there. It repeats until no input elements remain.</p>
+            <p>Insertion sort iterates, consuming one input element each repetition, and growing a sorted output list. At each iteration, insertion sort removes one element from the input data, finds the location it belongs within the sorted list, and inserts it there. It repeats until no input elements remain. Enter array [6, 5, 3, 1, 8, 7, 2, 4] to see an animated demonstration</p>
             {this.makeSource()}
           </div>}
           <div className={classes.inputRow}>
@@ -297,8 +343,7 @@ class Sort extends Component {
               className={classes.textField}
               value={this.state.unsortedArrayStr}
               onChange={this.handleUnsortedArrayChange}
-              margin="normal"
-            />
+              margin="normal"/>
             <Button raised disabled={!this.state.validArray} onClick={this.handleSortClick}>Sort</Button>
             <Button raised className={classes.reset} onClick={this.handleResetClick}>Reset</Button>
           </div>
@@ -317,8 +362,10 @@ class Sort extends Component {
             {this.props.sortedArray.map((item, index) => <Avatar key={'sorted'+index} className={classes.blueAvatar}>{item.toString()}</Avatar>)}
           </div>}
 
+          {showAnimation && <Button raised className={classes.showHideAnimation} onClick={this.handleShowHideAnimationClick}>{propsShowAnimation ? 'Hide Animation' : 'Show Animation'}</Button>}
           {this.props.steps && <Button raised className={classes.showHideSteps} onClick={this.handleShowHideStepsClick}>{this.props.showSteps ? 'Hide Steps' : 'Show Steps'}</Button>}
           {this.props.steps && <Button raised className={classes.logSteps} onClick={this.handleLogStepsClick}>Log Steps</Button>}
+          {propsShowAnimation && <img className={classes.animation} id="animation" src="./insertion-sort.gif" alt="Animation"/>}
           {this.props.showSteps && this.props.steps.map((step, index) => this.makeStep(step, index))}
         </div>
 

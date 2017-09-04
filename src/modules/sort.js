@@ -3,6 +3,7 @@ export const ADD_STEP = 'sort/ADD_STEP'
 export const SET_SORTED_ARRAY = 'sort/SET_SORTED_ARRAY'
 export const END_SORTING = 'sort/END_SORTING'
 export const TOGGLE_STEPS = 'sort/TOGGLE_STEPS'
+export const TOGGLE_ANIMATION = 'sort/TOGGLE_ANIMATION'
 export const TOGGLE_DESCRIPTION = 'sort/TOGGLE_DESCRIPTION'
 export const RESET = 'sort/RESET'
 
@@ -11,6 +12,7 @@ const initialState = {
   sorting: false,
   steps: null,
   showSteps: false,
+  showAnimation: 0,
   showDescription: false
 }
 
@@ -41,7 +43,8 @@ export default (state = initialState, action) => {
         steps: null,
         sortedArray: null,
         sorting: false,
-        showSteps: false
+        showSteps: false,
+        showAnimation: 0
       }
 
     case SET_SORTED_ARRAY:
@@ -54,6 +57,12 @@ export default (state = initialState, action) => {
       return {
         ...state,
         showSteps: !state.showSteps
+      }
+
+    case TOGGLE_ANIMATION:
+      return {
+        ...state,
+        showAnimation: ++state.showAnimation
       }
 
     case TOGGLE_DESCRIPTION:
@@ -104,6 +113,14 @@ export const toggleSteps = () => {
   return dispatch => {
     dispatch({
       type: TOGGLE_STEPS
+    })
+  }
+}
+
+export const toggleAnimation = () => {
+  return dispatch => {
+    dispatch({
+      type: TOGGLE_ANIMATION
     })
   }
 }
