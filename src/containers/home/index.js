@@ -27,7 +27,7 @@ const styles = {
   },
   spacer: {
     marginRight: 10
-  },
+  }
 }
 
 class Home extends Component {

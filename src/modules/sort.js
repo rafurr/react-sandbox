@@ -22,16 +22,19 @@ export default (state = initialState, action) => {
         steps: [],
         sorting: true
       }
+
     case END_SORTING:
       return {
         ...state,
         sorting: false
       }
+
     case ADD_STEP:
       return {
         ...state,
         steps: state.steps.concat([action.payload])
       }
+
     case RESET:
       return {
         ...state,
@@ -40,21 +43,25 @@ export default (state = initialState, action) => {
         sorting: false,
         showSteps: false
       }
+
     case SET_SORTED_ARRAY:
       return {
         ...state,
         sortedArray: action.payload
       }
+
     case TOGGLE_STEPS:
       return {
         ...state,
         showSteps: !state.showSteps
       }
+
     case TOGGLE_DESCRIPTION:
       return {
         ...state,
         showDescription: !state.showDescription
       }
+
     default:
       return state
   }

@@ -12,6 +12,7 @@ export default (state = initialState, action) => {
         ...state,
         sideDrawerOpen: true
       }
+
     case CLOSE_DRAWER:
       return {
         ...state,

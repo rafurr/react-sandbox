@@ -11,7 +11,7 @@ import orange from 'material-ui/colors/orange'
 import blue from 'material-ui/colors/blue'
 
 import {TitleBar, SideDrawer} from '../../components'
-import {insertionSort, insertionSortWithCallback} from '../../utils/sort'
+import {insertionSortWithCallback} from '../../utils/sort'
 
 import {
   openDrawer,
@@ -57,8 +57,10 @@ const styles = {
   spacer: {
     marginRight: 10
   },
-  code: {
-    display: 'block'
+  title: {
+    marginTop: 5,
+    marginBottom: 5,
+    cursor: 'pointer'
   },
   code0: {
     display: 'block'
@@ -75,12 +77,6 @@ const styles = {
     display: 'block',
     marginLeft: 45
   },
-  title: {
-    marginTop: 5,
-    marginBottom: 5,
-    cursor: 'pointer'
-  },
-  description: {},
   orangeAvatar: {
     width: 35,
     height: 35,
@@ -96,10 +92,6 @@ const styles = {
     margin: '0 5px 0 0',
     color: '#fff',
     backgroundColor: blue[500]
-  },
-  titleRow: {
-    display: 'flex',
-    marginBottom: 1,
   },
   inputRow: {
     marginBottom: 10,
@@ -131,7 +123,7 @@ const styles = {
   },
   reset: {
     marginLeft: 10
-  },
+  }
 }
 
 class Sort extends Component {
@@ -233,7 +225,6 @@ class Sort extends Component {
     return str
   }
 
-
   logSteps = (steps) => {
     console.clear()
     steps.forEach(step => console.log(this.makeString(step)))
@@ -287,7 +278,6 @@ class Sort extends Component {
   }
 
   render() {
-    window.xxx = insertionSort
     const classes = this.props.classes
 
     return (

@@ -8,19 +8,11 @@ import Button from 'material-ui/Button'
 
 import HomeIcon from 'mdi-react/HomeCircleIcon'
 
-import {
-  openDrawer,
-  closeDrawer
-} from '../../modules/view'
+import {} from '../../modules/view'
 
-const mapStateToProps = state => ({
-  sideDrawerOpen: state.view.sideDrawerOpen
-})
+const mapStateToProps = state => ({})
 
-const mapDispatchToProps = dispatch => bindActionCreators({
-  openDrawer,
-  closeDrawer
-}, dispatch)
+const mapDispatchToProps = dispatch => bindActionCreators({}, dispatch)
 
 const styles = {
   view: {
@@ -37,7 +29,7 @@ const styles = {
   },
   spacer: {
     marginRight: 10
-  },
+  }
 }
 
 class Error404 extends Component {
