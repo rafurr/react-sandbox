@@ -41,6 +41,9 @@ const styles = {
     marginBottom: 5,
     cursor: 'pointer'
   },
+  exampleTitle: {
+    marginBottom: 5,
+  },
   code0: {
     display: 'block'
   },
@@ -76,8 +79,16 @@ class Once extends Component {
     const classes = this.props.classes
 
     const lines = [
-      '1',
-      'n'
+      'once = (fn, ctx) => {',
+      '  let result',
+      '  return function () {',
+      '    if (fn) {',
+      '      result = fn.apply(ctx || this, arguments)',
+      '      fn = null',
+      '    }',
+      '    return result',
+      '  }',
+      '}'
     ]
 
     return (
@@ -87,9 +98,28 @@ class Once extends Component {
     )
   }
 
-  bootstrapApp = () => {
-    console.log('executed once')
-    return 22
+  makeExample = () => {
+    const classes = this.props.classes
+
+    const lines = [
+      "const bootstrapApp = () => {",
+      "  console.log('executed once')",
+      "  return 22",
+      "}",
+      "",
+      "const initialize = once(bootstrapApp)",
+      "console.log(initialize())",
+      "console.log(initialize())",
+      "// executed once",
+      "// 22",
+      "// 22",
+    ]
+
+    return (
+      <p>
+        {lines.map((line, index) => this.makeSourceLine(line, index, classes))}
+      </p>
+    )
   }
 
   handleToggleDescriptionClick = () => {
@@ -97,15 +127,20 @@ class Once extends Component {
   }
 
   handleOnceClick = () => {
+    console.clear()
+
     const bootstrapApp = () => {
       console.log('executed once')
       return 22
     }
 
-    let initialize = once(bootstrapApp)
+    const initialize = once(bootstrapApp)
     console.log(initialize())
     console.log(initialize())
- }
+    // executed once
+    // 22
+    // 22
+  }
 
   render() {
     const classes = this.props.classes
@@ -117,10 +152,13 @@ class Once extends Component {
         <div className={classes.container}>
           <h2 className={classes.title} onClick={this.handleToggleDescriptionClick}>Once</h2>
           {this.props.showDescription && <div>
-            <p>Once Description</p>
+            <p>The once function creates a version of the function that can only be called one time. Repeated calls to the modified function will have no effect, returning the value from the original call. Useful for initialization functions, instead of having to set a boolean flag and then check it later.</p>
             {this.makeSource()}
           </div>}
+          <h4 className={classes.exampleTitle}>Example</h4>
+          {this.makeExample()}
           <Button raised className={classes.spacer} onClick={this.handleOnceClick}>Once</Button>
+          <h4>Output will be logged to the console. Open the console window to verify.</h4>
         </div>
 
         <LeftDrawer

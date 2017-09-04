@@ -3,7 +3,7 @@ export const makeArray = (args) => {
 }
 
 export const curry = (fn) => {
-  function curried() {
+  function curried () {
     if (arguments.length < fn.length) {
       const args = makeArray(arguments)
       return function () {
