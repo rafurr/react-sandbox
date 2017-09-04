@@ -85,8 +85,8 @@ class Sort extends Component {
 
   state = {
     validArray: true,
-    unsortedArray: [0, 5, 1, 4, 2, 3],
-    unsortedArrayStr: '[0, 5, 1, 4, 2, 3]'
+    unsortedArray: [5, 1, 4, 2, 3],
+    unsortedArrayStr: '[5, 1, 4, 2, 3]'
   }
 
   handleUnsortedArrayChange = event => {
