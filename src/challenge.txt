@@ -1,0 +1,38 @@
+1. Implement the sort function  - native sort is cheating. Don't use it.
+
+var sort = function() {}
+
+var arr = [5, 1, 4, 2, 3];
+var sorted = sort(arr);
+console.log(sorted); // [1, 2, 3, 4, 5]
+
+
+
+2. Only once – implement the once function as it works below.
+
+var once = function() {}
+
+function bootstrapApp() {
+  console.log('executed once');
+  return 22;
+}
+
+var initialize = once(bootstrapApp);
+console.log(initialize());
+console.log(initialize());
+// executed once
+// 22
+// 22
+
+
+
+3. Implement the curry function below.
+
+var curry = function() {}
+
+function add(a, b) {
+  return a + b;
+}
+
+var curried = curry(add);
+console.log(  curried(1)(2)  ); // 3
