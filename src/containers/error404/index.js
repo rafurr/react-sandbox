@@ -51,8 +51,8 @@ class Error404 extends Component {
       <div id="error404View" className={classes.view}>
 
         {show && <div id="error404Container" className={classes.container}>
-          <h1 className={classes.title}>Error 404 - Page Not Found</h1>
-          <h2 className={classes.subTitle}>Go Gators or Go Home</h2>
+          <h2 className={classes.title}>Error 404 - Page Not Found</h2>
+          <h3 className={classes.subTitle}>Go Gators or Go Home</h3>
           <div>
             <Button onClick={() => this.props.history.push('/')}>
               <HomeIcon /> Home

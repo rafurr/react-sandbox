@@ -2,14 +2,16 @@ export const BEGIN_SORTING = 'sort/BEGIN_SORTING'
 export const ADD_STEP = 'sort/ADD_STEP'
 export const SET_SORTED_ARRAY = 'sort/SET_SORTED_ARRAY'
 export const END_SORTING = 'sort/END_SORTING'
-export const PLAY_STEPS = 'sort/PLAY_STEPS'
+export const TOGGLE_STEPS = 'sort/TOGGLE_STEPS'
+export const TOGGLE_DESCRIPTION = 'sort/TOGGLE_DESCRIPTION'
 export const RESET = 'sort/RESET'
 
 const initialState = {
   sortedArray: null,
   sorting: false,
   steps: null,
-  play: false
+  showSteps: false,
+  showDescription: false
 }
 
 export default (state = initialState, action) => {
@@ -36,21 +38,23 @@ export default (state = initialState, action) => {
         steps: null,
         sortedArray: null,
         sorting: false,
-        play: false
+        showSteps: false
       }
-
     case SET_SORTED_ARRAY:
       return {
         ...state,
         sortedArray: action.payload
       }
-
-    case PLAY_STEPS:
+    case TOGGLE_STEPS:
       return {
         ...state,
-        play: true
+        showSteps: !state.showSteps
       }
-
+    case TOGGLE_DESCRIPTION:
+      return {
+        ...state,
+        showDescription: !state.showDescription
+      }
     default:
       return state
   }
@@ -89,10 +93,10 @@ export const reset = () => {
   }
 }
 
-export const playSteps = () => {
+export const toggleSteps = () => {
   return dispatch => {
     dispatch({
-      type: PLAY_STEPS
+      type: TOGGLE_STEPS
     })
   }
 }
@@ -102,6 +106,14 @@ export const setSortedArray = (arr) => {
     dispatch({
       type: SET_SORTED_ARRAY,
       payload: arr
+    })
+  }
+}
+
+export const toggleDescription = () => {
+  return dispatch => {
+    dispatch({
+      type: TOGGLE_DESCRIPTION,
     })
   }
 }

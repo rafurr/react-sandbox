@@ -53,7 +53,7 @@ class Once extends Component {
         <TitleBar title="Once" onOpenDrawer={this.props.openDrawer} />
 
         <div className={classes.container}>
-          <h1>Once</h1>
+          <h2>Once</h2>
           <Button raised className={classes.spacer} onClick={this.handleOnceClick}>Once</Button>
         </div>
 

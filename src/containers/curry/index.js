@@ -50,7 +50,7 @@ class Curry extends Component {
         <TitleBar title="Curry" onOpenDrawer={this.props.openDrawer} />
 
         <div className={classes.container}>
-          <h1>Curry</h1>
+          <h2>Curry</h2>
           <Button raised className={classes.spacer} onClick={this.handleCurryClick}>Curry</Button>
         </div>
 

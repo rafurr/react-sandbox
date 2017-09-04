@@ -44,7 +44,7 @@ class About extends Component {
         <TitleBar title="About" onOpenDrawer={this.props.openDrawer} />
 
         <div className={classes.container}>
-          <h1>About</h1>
+          <h2>About</h2>
           <div>
             <span>Home</span>
             <IconButton>

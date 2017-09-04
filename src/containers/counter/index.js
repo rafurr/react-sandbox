@@ -55,7 +55,7 @@ class Counter extends Component {
         <TitleBar title="Counter" onOpenDrawer={this.props.openDrawer} />
 
         <div className={classes.container}>
-          <h1>Counter</h1>
+          <h2>Counter</h2>
           <p>Count: {this.props.count}</p>
 
           <p>

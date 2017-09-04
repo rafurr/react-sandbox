@@ -11,7 +11,7 @@ import orange from 'material-ui/colors/orange'
 import blue from 'material-ui/colors/blue'
 
 import {TitleBar, SideDrawer} from '../../components'
-import {insertionSortWithCallback} from '../../utils/sort'
+import {insertionSort, insertionSortWithCallback} from '../../utils/sort'
 
 import {
   openDrawer,
@@ -22,7 +22,8 @@ import {
   beginSorting,
   endSorting,
   addStep,
-  playSteps,
+  toggleSteps,
+  toggleDescription,
   reset,
   setSortedArray,
 } from '../../modules/sort'
@@ -31,7 +32,8 @@ const mapStateToProps = state => ({
   sideDrawerOpen: state.view.sideDrawerOpen,
   sorting: state.sort.sorting,
   steps: state.sort.steps,
-  play: state.sort.play,
+  showSteps: state.sort.showSteps,
+  showDescription: state.sort.showDescription,
   unsortedArray: state.sort.unsortedArray,
   sortedArray: state.sort.sortedArray
 })
@@ -43,7 +45,8 @@ const mapDispatchToProps = dispatch => bindActionCreators({
   endSorting,
   addStep,
   reset,
-  playSteps,
+  toggleSteps,
+  toggleDescription,
   setSortedArray
 }, dispatch)
 
@@ -54,22 +57,62 @@ const styles = {
   spacer: {
     marginRight: 10
   },
+  code: {
+    display: 'block'
+  },
+  code0: {
+    display: 'block'
+  },
+  code1: {
+    display: 'block',
+    marginLeft: 15
+  },
+  code2: {
+    display: 'block',
+    marginLeft: 30
+  },
+  code3: {
+    display: 'block',
+    marginLeft: 45
+  },
+  title: {
+    marginTop: 5,
+    marginBottom: 5,
+    cursor: 'pointer'
+  },
+  description: {},
   orangeAvatar: {
-    margin: 10,
+    width: 35,
+    height: 35,
+    fontSize: 16,
+    margin: '0 5px 0 0',
     color: '#fff',
     backgroundColor: orange[500]
   },
   blueAvatar: {
-    margin: 10,
+    width: 35,
+    height: 35,
+    fontSize: 16,
+    margin: '0 5px 0 0',
     color: '#fff',
     backgroundColor: blue[500]
   },
+  titleRow: {
+    display: 'flex',
+    marginBottom: 1,
+  },
+  inputRow: {
+    marginBottom: 10,
+  },
   row: {
     display: 'flex',
-    justifyContent: 'left'
+    justifyContent: 'left',
+    marginBottom: 10,
   },
   label: {
-    minWidth: 140
+    minWidth: 140,
+    marginTop: 1,
+    marginBottom: 1,
   },
   textField: {
     marginRight: 10,
@@ -78,6 +121,16 @@ const styles = {
   step: {
     marginTop: 10,
     minHeight: 1
+  },
+  showHideSteps: {
+    width: 150
+  },
+  logSteps: {
+    width: 150,
+    marginLeft: 10
+  },
+  reset: {
+    marginLeft: 10
   },
 }
 
@@ -128,9 +181,26 @@ class Sort extends Component {
     this.props.setSortedArray(arr)
   }
 
-  handlePlayClick = () => {
+  handleToggleDescriptionClick = () => {
+    this.props.toggleDescription()
+  }
+
+  handleShowHideStepsClick = () => {
+    this.props.toggleSteps()
+  }
+
+  handleLogStepsClick = () => {
     this.logSteps(this.props.steps)
-    this.props.playSteps()
+  }
+
+  handleResetClick = () => {
+    this.setState({
+      validArray: true,
+      unsortedArray: [5, 1, 4, 2, 3],
+      unsortedArrayStr: '[5, 1, 4, 2, 3]'
+    })
+
+    this.props.reset()
   }
 
   arrayToString = (arr) => {
@@ -142,19 +212,19 @@ class Sort extends Component {
 
     switch(step.type) {
       case 'before':
-        str = `Before ${this.arrayToString(step.arr)}`
+        str = `Unsorted ${this.arrayToString(step.arr)}`
         break;
       case 'copy':
-        str = `Copy:${step.item} From:${step.from} ${this.arrayToString(step.arr)}`
+        str = `Copy ${step.item} From ${step.from} \u27f8 ${this.arrayToString(step.arr)}`
         break;
       case 'shift':
-        str = `Shift:${step.item} From:${step.from} To:${step.to} >> ${this.arrayToString(step.arr)}`
+        str = `Shift ${step.item} From ${step.from} To ${step.to} \u27f9 ${this.arrayToString(step.arr)}`
         break;
       case 'insert':
-        str = `Insert:${step.item} At:${step.at} >> ${this.arrayToString(step.arr)}`
+        str = `Insert ${step.item} At ${step.at} \u27f9 ${this.arrayToString(step.arr)}`
         break;
       case 'after':
-        str = `After ${this.arrayToString(step.arr)}`
+        str = `Sorted ${this.arrayToString(step.arr)}`
         break;
       default:
         str = ''
@@ -165,6 +235,7 @@ class Sort extends Component {
 
 
   logSteps = (steps) => {
+    console.clear()
     steps.forEach(step => console.log(this.makeString(step)))
   }
 
@@ -172,7 +243,51 @@ class Sort extends Component {
     return <div key={'step'+index} className={this.props.classes.step}>{this.makeString(step)}</div>
   }
 
+  makeSourceLine = (line, index, classes) => {
+    const lineClass = line.startsWith("      ")
+      ? classes.code3
+      : line.startsWith("    ")
+        ? classes.code2
+        : line.startsWith("  ") ? classes.code1 : classes.code0;
+
+    return (
+      <code key={'line'+index} className={lineClass}>{line}</code>
+    )
+  }
+
+  makeSource = () => {
+    const classes = this.props.classes
+
+    const lines = [
+      'insertionSort = (arr) => {',
+      '  const len = arr.length',
+      '  for (let i = 1; i < len; i++) {',
+      '    // Copy of the current element',
+      '    const tmp = arr[i]',
+      '    // Check through the sorted part',
+      '    // Compare with the number in tmp',
+      '    // If larger, shift the number',
+      '    let j = i - 1',
+      '    for (j; j >= 0 && (arr[j] > tmp); j--) {',
+      '      // Shift the number',
+      '      arr[j + 1] = arr[j]',
+      '    }',
+      '    // Insert the copied number',
+      '    // At the correct position in sorted part',
+      '    arr[j + 1] = tmp',
+      '  }',
+      '}'
+    ]
+
+    return (
+      <p>
+        {lines.map((line, index) => this.makeSourceLine(line, index, classes))}
+      </p>
+    )
+  }
+
   render() {
+    window.xxx = insertionSort
     const classes = this.props.classes
 
     return (
@@ -180,26 +295,41 @@ class Sort extends Component {
         <TitleBar title="Sort" onOpenDrawer={this.props.openDrawer} />
 
         <div className={classes.container}>
-          <h1>Insertion Sort</h1>
-          <TextField
-            id="unsortedArray"
-            label="Unsorted Array"
-            className={classes.textField}
-            value={this.state.unsortedArrayStr}
-            onChange={this.handleUnsortedArrayChange}
-            margin="normal"
-          />
-          <Button raised disabled={!this.state.validArray} onClick={this.handleSortClick}>Sort</Button>
+          <h2 className={classes.title} onClick={this.handleToggleDescriptionClick}>Insertion Sort</h2>
+          {this.props.showDescription && <div>
+            <p>Insertion sort iterates, consuming one input element each repetition, and growing a sorted output list. At each iteration, insertion sort removes one element from the input data, finds the location it belongs within the sorted list, and inserts it there. It repeats until no input elements remain.</p>
+            {this.makeSource()}
+          </div>}
+          <div className={classes.inputRow}>
+            <TextField
+              id="unsortedArray"
+              label="Unsorted Array"
+              className={classes.textField}
+              value={this.state.unsortedArrayStr}
+              onChange={this.handleUnsortedArrayChange}
+              margin="normal"
+            />
+            <Button raised disabled={!this.state.validArray} onClick={this.handleSortClick}>Sort</Button>
+            <Button raised className={classes.reset} onClick={this.handleResetClick}>Reset</Button>
+          </div>
+
           {this.state.validArray && <div className={classes.row}>
-            <h3 className={classes.label}>Unsorted Array</h3>
+            <h4 className={classes.label}>Unsorted Array</h4>
+          </div>}
+          {this.state.validArray && <div className={classes.row}>
             {this.state.unsortedArray.map((item, index) => <Avatar key={'unsorted'+index} className={classes.orangeAvatar}>{item.toString()}</Avatar>)}
           </div>}
+
           {this.props.sortedArray && <div className={classes.row}>
-            <h3 className={classes.label}>Sorted Array</h3>
+            <h4 className={classes.label}>Sorted Array</h4>
+          </div>}
+          {this.props.sortedArray && <div className={classes.row}>
             {this.props.sortedArray.map((item, index) => <Avatar key={'sorted'+index} className={classes.blueAvatar}>{item.toString()}</Avatar>)}
           </div>}
-          {this.props.steps && <Button raised onClick={this.handlePlayClick}>Show Steps</Button>}
-          {this.props.play && this.props.steps.map((step, index) => this.makeStep(step, index))}
+
+          {this.props.steps && <Button raised className={classes.showHideSteps} onClick={this.handleShowHideStepsClick}>{this.props.showSteps ? 'Hide Steps' : 'Show Steps'}</Button>}
+          {this.props.steps && <Button raised className={classes.logSteps} onClick={this.handleLogStepsClick}>Log Steps</Button>}
+          {this.props.showSteps && this.props.steps.map((step, index) => this.makeStep(step, index))}
         </div>
 
         <SideDrawer
