@@ -10,12 +10,12 @@ import Avatar from 'material-ui/Avatar'
 import orange from 'material-ui/colors/orange'
 import blue from 'material-ui/colors/blue'
 
-import {TitleBar, SideDrawer} from '../../components'
+import {TitleBar, LeftDrawer} from '../../components'
 import {insertionSortWithCallback} from '../../utils/sort'
 
 import {
-  openDrawer,
-  closeDrawer
+  openLeftDrawer,
+  closeLeftDrawer
 } from '../../modules/view'
 
 import {
@@ -29,7 +29,7 @@ import {
 } from '../../modules/sort'
 
 const mapStateToProps = state => ({
-  sideDrawerOpen: state.view.sideDrawerOpen,
+  leftDrawerOpen: state.view.leftDrawerOpen,
   sorting: state.sort.sorting,
   steps: state.sort.steps,
   showSteps: state.sort.showSteps,
@@ -39,8 +39,8 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-  openDrawer,
-  closeDrawer,
+  openLeftDrawer,
+  closeLeftDrawer,
   beginSorting,
   endSorting,
   addStep,
@@ -282,7 +282,7 @@ class Sort extends Component {
 
     return (
       <div>
-        <TitleBar title="Sort" onOpenDrawer={this.props.openDrawer} />
+        <TitleBar title="Sort" onOpenDrawer={this.props.openLeftDrawer} />
 
         <div className={classes.container}>
           <h2 className={classes.title} onClick={this.handleToggleDescriptionClick}>Insertion Sort</h2>
@@ -322,11 +322,11 @@ class Sort extends Component {
           {this.props.showSteps && this.props.steps.map((step, index) => this.makeStep(step, index))}
         </div>
 
-        <SideDrawer
-          open={this.props.sideDrawerOpen}
+        <LeftDrawer
+          open={this.props.leftDrawerOpen}
           history={this.props.history}
-          onRequestClose={this.props.closeDrawer}
-          onClick={this.props.closeDrawer} />
+          onRequestClose={this.props.closeLeftDrawer}
+          onClick={this.props.closeLeftDrawer} />
 
       </div>
     )

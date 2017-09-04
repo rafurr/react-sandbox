@@ -13,17 +13,17 @@ import About from '../about'
 import Error404 from '../error404'
 
 import {
-  openDrawer,
-  closeDrawer
+  openLeftDrawer,
+  closeLeftDrawer
 } from '../../modules/view'
 
 const mapStateToProps = state => ({
-  sideDrawerOpen: state.view.sideDrawerOpen,
+  leftDrawerOpen: state.view.leftDrawerOpen,
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-  openDrawer,
-  closeDrawer
+  openLeftDrawer,
+  closeLeftDrawer
 }, dispatch)
 
 const App = () => (

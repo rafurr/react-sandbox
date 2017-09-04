@@ -6,12 +6,12 @@ import { connect } from 'react-redux'
 import { withStyles } from 'material-ui/styles'
 import Button from 'material-ui/Button'
 
-import {TitleBar, SideDrawer} from '../../components'
+import {TitleBar, LeftDrawer} from '../../components'
 import {once} from '../../utils/once'
 
 import {
-  openDrawer,
-  closeDrawer
+  openLeftDrawer,
+  closeLeftDrawer
 } from '../../modules/view'
 
 import {
@@ -19,13 +19,13 @@ import {
 } from '../../modules/once'
 
 const mapStateToProps = state => ({
-  sideDrawerOpen: state.view.sideDrawerOpen,
+  leftDrawerOpen: state.view.leftDrawerOpen,
   showDescription: state.once.showDescription
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-  openDrawer,
-  closeDrawer,
+  openLeftDrawer,
+  closeLeftDrawer,
   toggleDescription
 }, dispatch)
 
@@ -112,7 +112,7 @@ class Once extends Component {
 
     return (
       <div>
-        <TitleBar title="Once" onOpenDrawer={this.props.openDrawer} />
+        <TitleBar title="Once" onOpenDrawer={this.props.openLeftDrawer} />
 
         <div className={classes.container}>
           <h2 className={classes.title} onClick={this.handleToggleDescriptionClick}>Once</h2>
@@ -123,11 +123,11 @@ class Once extends Component {
           <Button raised className={classes.spacer} onClick={this.handleOnceClick}>Once</Button>
         </div>
 
-        <SideDrawer
-          open={this.props.sideDrawerOpen}
+        <LeftDrawer
+          open={this.props.leftDrawerOpen}
           history={this.props.history}
-          onRequestClose={this.props.closeDrawer}
-          onClick={this.props.closeDrawer} />
+          onRequestClose={this.props.closeLeftDrawer}
+          onClick={this.props.closeLeftDrawer} />
 
       </div>
     )

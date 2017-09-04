@@ -1,2 +1,2 @@
 export {TitleBar} from './TitleBar'
-export {SideDrawer} from './SideDrawer'
+export {LeftDrawer} from './LeftDrawer'

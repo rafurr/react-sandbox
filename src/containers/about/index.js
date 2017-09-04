@@ -9,20 +9,20 @@ import IconButton from 'material-ui/IconButton'
 import HomeIcon from 'mdi-react/HomeCircleIcon'
 import ErrorIcon from 'mdi-react/LinkOffIcon'
 
-import {TitleBar, SideDrawer} from '../../components'
+import {TitleBar, LeftDrawer} from '../../components'
 
 import {
-  openDrawer,
-  closeDrawer
+  openLeftDrawer,
+  closeLeftDrawer
 } from '../../modules/view'
 
 const mapStateToProps = state => ({
-  sideDrawerOpen: state.view.sideDrawerOpen
+  leftDrawerOpen: state.view.leftDrawerOpen
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-  openDrawer,
-  closeDrawer
+  openLeftDrawer,
+  closeLeftDrawer
 }, dispatch)
 
 const styles = {
@@ -41,7 +41,7 @@ class About extends Component {
 
     return (
       <div>
-        <TitleBar title="About" onOpenDrawer={this.props.openDrawer} />
+        <TitleBar title="About" onOpenDrawer={this.props.openLeftDrawer} />
 
         <div className={classes.container}>
           <h2>About</h2>
@@ -59,11 +59,11 @@ class About extends Component {
           </div>
         </div>
 
-        <SideDrawer
-          open={this.props.sideDrawerOpen}
+        <LeftDrawer
+          open={this.props.leftDrawerOpen}
           history={this.props.history}
-          onRequestClose={this.props.closeDrawer}
-          onClick={this.props.closeDrawer} />
+          onRequestClose={this.props.closeLeftDrawer}
+          onClick={this.props.closeLeftDrawer} />
 
       </div>
     )

@@ -1,22 +1,22 @@
-export const OPEN_DRAWER = 'view/OPEN_DRAWER'
-export const CLOSE_DRAWER = 'view/CLOSE_DRAWER'
+export const OPEN_LEFT_DRAWER = 'view/OPEN_LEFT_DRAWER'
+export const CLOSE_LEFT_DRAWER = 'view/CLOSE_LEFT_DRAWER'
 
 const initialState = {
-  sideDrawerOpen: false
+  leftDrawerOpen: false
 }
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case OPEN_DRAWER:
+    case OPEN_LEFT_DRAWER:
       return {
         ...state,
-        sideDrawerOpen: true
+        leftDrawerOpen: true
       }
 
-    case CLOSE_DRAWER:
+    case CLOSE_LEFT_DRAWER:
       return {
         ...state,
-        sideDrawerOpen: false
+        leftDrawerOpen: false
       }
 
     default:
@@ -24,18 +24,18 @@ export default (state = initialState, action) => {
   }
 }
 
-export const openDrawer = () => {
+export const openLeftDrawer = () => {
   return dispatch => {
     dispatch({
-      type: OPEN_DRAWER
+      type: OPEN_LEFT_DRAWER
     })
   }
 }
 
-export const closeDrawer = () => {
+export const closeLeftDrawer = () => {
   return dispatch => {
     dispatch({
-      type: CLOSE_DRAWER
+      type: CLOSE_LEFT_DRAWER
     })
   }
 }

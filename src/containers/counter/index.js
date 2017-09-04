@@ -6,11 +6,11 @@ import { connect } from 'react-redux'
 import { withStyles } from 'material-ui/styles'
 import Button from 'material-ui/Button'
 
-import {TitleBar, SideDrawer} from '../../components'
+import {TitleBar, LeftDrawer} from '../../components'
 
 import {
-  openDrawer,
-  closeDrawer
+  openLeftDrawer,
+  closeLeftDrawer
 } from '../../modules/view'
 
 import {
@@ -25,13 +25,13 @@ const mapStateToProps = state => ({
   count: state.counter.count,
   isIncrementing: state.counter.isIncrementing,
   isDecrementing: state.counter.isDecrementing,
-  sideDrawerOpen: state.view.sideDrawerOpen,
+  leftDrawerOpen: state.view.leftDrawerOpen,
   showDescription: state.counter.showDescription
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-  openDrawer,
-  closeDrawer,
+  openLeftDrawer,
+  closeLeftDrawer,
   increment,
   incrementAsync,
   decrement,
@@ -106,7 +106,7 @@ class Counter extends Component {
 
     return (
       <div>
-        <TitleBar title="Counter" onOpenDrawer={this.props.openDrawer} />
+        <TitleBar title="Counter" onOpenDrawer={this.props.openLeftDrawer} />
 
         <div className={classes.container}>
           <h2 className={classes.title} onClick={this.handleToggleDescriptionClick}>Counter</h2>
@@ -150,11 +150,11 @@ class Counter extends Component {
           </p>
         </div>
 
-        <SideDrawer
-          open={this.props.sideDrawerOpen}
+        <LeftDrawer
+          open={this.props.leftDrawerOpen}
           history={this.props.history}
-          onRequestClose={this.props.closeDrawer}
-          onClick={this.props.closeDrawer}/>
+          onRequestClose={this.props.closeLeftDrawer}
+          onClick={this.props.closeLeftDrawer}/>
 
       </div>
     )

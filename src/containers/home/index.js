@@ -5,20 +5,20 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
 import { withStyles } from 'material-ui/styles'
-import {TitleBar, SideDrawer} from '../../components'
+import {TitleBar, LeftDrawer} from '../../components'
 
 import {
-  openDrawer,
-  closeDrawer
+  openLeftDrawer,
+  closeLeftDrawer
 } from '../../modules/view'
 
 const mapStateToProps = state => ({
-  sideDrawerOpen: state.view.sideDrawerOpen
+  leftDrawerOpen: state.view.leftDrawerOpen
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-  openDrawer,
-  closeDrawer
+  openLeftDrawer,
+  closeLeftDrawer
 }, dispatch)
 
 const styles = {
@@ -37,7 +37,7 @@ class Home extends Component {
 
     return (
       <div>
-        <TitleBar title="Home" onOpenDrawer={this.props.openDrawer} />
+        <TitleBar title="Home" onOpenDrawer={this.props.openLeftDrawer} />
 
         <div className={classes.container}>
           <header>
@@ -52,11 +52,11 @@ class Home extends Component {
           <h2>Home</h2>
         </div>
 
-        <SideDrawer
-          open={this.props.sideDrawerOpen}
+        <LeftDrawer
+          open={this.props.leftDrawerOpen}
           history={this.props.history}
-          onRequestClose={this.props.closeDrawer}
-          onClick={this.props.closeDrawer} />
+          onRequestClose={this.props.closeLeftDrawer}
+          onClick={this.props.closeLeftDrawer} />
 
       </div>
     )

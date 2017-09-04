@@ -5,7 +5,7 @@ import List from 'material-ui/List'
 import { ListItem, ListItemText } from 'material-ui/List'
 import Drawer from 'material-ui/Drawer'
 
-export const SideDrawer = ({open, history, onClick, onRequestClose}) => {
+export const LeftDrawer = ({open, history, onClick, onRequestClose}) => {
   const sideList = (
     <div>
       <List>
@@ -30,7 +30,7 @@ export const SideDrawer = ({open, history, onClick, onRequestClose}) => {
   )
 }
 
-SideDrawer.propTypes = {
+LeftDrawer.propTypes = {
   open: PropTypes.bool.isRequired,
   history: PropTypes.object,
   onClick: PropTypes.func,
