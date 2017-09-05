@@ -1,6 +1,6 @@
 ## Description
 
-This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app) and demonstrates the use of  React, Redux, React Router and Material-ui.
+This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app) and demonstrates the use of  React, Redux, React Router and Material-UI.
 
 #### [Detail description to follow]
 
