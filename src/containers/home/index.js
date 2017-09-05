@@ -88,7 +88,7 @@ class Home extends Component {
             <p>This application was bootstrapped with Create React App and is intended to demonstrate how to construct an application that uses React, Redux, React Router, Material-UI and other technologies. As time permits, this application will be updated to use additional front end and back end technologies. The application is a Single Page Application (SPA) that is a responsive, mobile first application.</p>
             <p>This application also demonstrates a few code challenges taken to the next level where the challenges are incorporated into the application in an attempt showcase the above mentioned technologies and my knowledge and expertise in using them. Initially a lot of bootstrapping and experimentation had to be done latest versions technologies. I have used the previous versions but want this application to be current and a little bleeding edge. For example, Material-UI is still in beta and is a departure from it previous version.</p>
             <h2>How to use the application</h2>
-            <p>The pages of this application can be reached either by the links on the menu bar at the top of this page or by the left slide out menu accessible using the hamburger menu icon in the title bar.</p>
+            <p>The pages of this application can be reached either by the links on the bottom navigation bar or by the left slide out menu accessible using the hamburger menu icon in the title bar.</p>
             <p>Tapping the headers within the code challenge pages will display a description and implementation of the code being demonstrated.</p>
           </div>
 
