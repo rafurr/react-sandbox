@@ -12,7 +12,7 @@ button:disabled {
   height: 100%;
 }
 
-#error404View {
+#error-404-view {
   height: 100vh;
   margin-top: -21px;
   background-image: url("albert.png");
@@ -21,10 +21,6 @@ button:disabled {
   background-size: contain;
 }
 
-#error404Container {
+#error-404-container {
   margin: 20px;
-}
-
-#insertion-sort {
-  background-image: url("insertion-sort.gif");
 }

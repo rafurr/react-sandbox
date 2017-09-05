@@ -3,6 +3,8 @@ import PropTypes from 'prop-types'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
+import animation from '../../images/insertion-sort.gif';
+
 import { withStyles } from 'material-ui/styles'
 import Button from 'material-ui/Button'
 import TextField from 'material-ui/TextField';
@@ -371,7 +373,7 @@ class Sort extends Component {
           {showAnimation && <Button raised className={classes.showHideAnimation} onClick={this.handleShowHideAnimationClick}>{propsShowAnimation ? 'Hide Animation' : 'Show Animation'}</Button>}
           {this.props.steps && <Button raised className={classes.showHideSteps} onClick={this.handleShowHideStepsClick}>{this.props.showSteps ? 'Hide Steps' : 'Show Steps'}</Button>}
           {this.props.steps && <Button raised className={classes.logSteps} onClick={this.handleLogStepsClick}>Log Steps</Button>}
-          {propsShowAnimation && <img className={classes.animation} id="animation" src="./insertion-sort.gif" alt="Animation"/>}
+          {propsShowAnimation && <img className={classes.animation} id="animation" src={animation} alt="Animation"/>}
           {this.props.showSteps && this.props.steps.map((step, index) => this.makeStep(step, index))}
         </div>
 

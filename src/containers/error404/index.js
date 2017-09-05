@@ -40,9 +40,9 @@ class Error404 extends Component {
     const show = true
 
     return (
-      <div id="error404View" className={classes.view}>
+      <div id="error-404-view" className={classes.view}>
 
-        {show && <div id="error404Container" className={classes.container}>
+        {show && <div id="error-404-container" className={classes.container}>
           <h2 className={classes.title}>Error 404 - Page Not Found</h2>
           <h3 className={classes.subTitle}>Go Gators or Go Home</h3>
           <div>
