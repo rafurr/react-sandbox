@@ -44,6 +44,10 @@ const styles = {
   exampleTitle: {
     marginBottom: 5,
   },
+  sourceCode: {
+    marginTop: 0,
+    marginBottom: 0,
+  },
   code0: {
     display: 'block'
   },
@@ -150,12 +154,13 @@ class Curry extends Component {
           <h2 className={classes.title} onClick={this.handleToggleDescriptionClick}>Curry</h2>
           {this.props.showDescription && <div>
             <p>The curry function creates a version of a function that allows partial application of a function’s arguments. What this means is that you can pass all of the arguments a function is expecting and get the result, or pass a subset of those arguments and get a function back that’s waiting for the rest of the arguments.</p>
+            <h4 className={classes.sourceCode}>Source Code</h4>
             {this.makeSource()}
           </div>}
           <h4 className={classes.exampleTitle}>Example</h4>
           {this.makeExample()}
+          <h4>When the button below is pressed, the output will be logged to the console. Open the browser Console to verify.</h4>
           <Button raised className={classes.spacer} onClick={this.handleCurryClick}>Curry</Button>
-          <h4>Output will be logged to the console. Open the console window to verify.</h4>
         </div>
 
         <LeftDrawer

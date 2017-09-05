@@ -50,52 +50,10 @@ const styles = {
     marginTop: 5,
     marginBottom: 5,
     cursor: 'pointer'
-  },
-  code0: {
-    display: 'block'
-  },
-  code1: {
-    display: 'block',
-    marginLeft: 15
-  },
-  code2: {
-    display: 'block',
-    marginLeft: 30
-  },
-  code3: {
-    display: 'block',
-    marginLeft: 45
   }
 }
 
 class Counter extends Component {
-
-  makeSourceLine = (line, index, classes) => {
-    const lineClass = line.startsWith("      ")
-      ? classes.code3
-      : line.startsWith("    ")
-        ? classes.code2
-        : line.startsWith("  ") ? classes.code1 : classes.code0;
-
-    return (
-      <code key={'line'+index} className={lineClass}>{line}</code>
-    )
-  }
-
-  makeSource = () => {
-    const classes = this.props.classes
-
-    const lines = [
-      '1',
-      'n'
-    ]
-
-    return (
-      <p>
-        {lines.map((line, index) => this.makeSourceLine(line, index, classes))}
-      </p>
-    )
-  }
 
   handleToggleDescriptionClick = () => {
     this.props.toggleDescription()
@@ -111,8 +69,7 @@ class Counter extends Component {
         <div className={classes.container}>
           <h2 className={classes.title} onClick={this.handleToggleDescriptionClick}>Counter</h2>
           {this.props.showDescription && <div>
-            <p>Counter Description</p>
-            {this.makeSource()}
+            <p>Counter demonstrates how to use Redux to update state data.</p>
           </div>}
           <p>Count: {this.props.count}</p>
 

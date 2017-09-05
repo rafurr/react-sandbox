@@ -4,10 +4,9 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
 import { withStyles } from 'material-ui/styles'
-import IconButton from 'material-ui/IconButton'
+import Button from 'material-ui/Button'
 
 import HomeIcon from 'mdi-react/HomeCircleIcon'
-import ErrorIcon from 'mdi-react/LinkOffIcon'
 
 import {TitleBar, LeftDrawer} from '../../components'
 
@@ -45,17 +44,16 @@ class About extends Component {
 
         <div className={classes.container}>
           <h2>About</h2>
+          <p>This application was developed by Robert Furr.</p>
           <div>
-            <span>Home</span>
-            <IconButton>
-              <HomeIcon onClick={() => this.props.history.push('/')} />
-            </IconButton>
+            <Button onClick={() => this.props.history.push('/')}>
+              <HomeIcon /> Home
+            </Button>
           </div>
           <div>
-            <span>Bad Link</span>
-            <IconButton>
-              <ErrorIcon onClick={() => this.props.history.push('/bad-link')} />
-            </IconButton>
+            <Button onClick={() => this.props.history.push('/bad-link')}>
+              <HomeIcon /> Bad Link
+            </Button>
           </div>
         </div>
 

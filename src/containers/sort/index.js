@@ -68,6 +68,10 @@ const styles = {
     marginBottom: 5,
     cursor: 'pointer'
   },
+  sourceCode: {
+    marginTop: 0,
+    marginBottom: 0,
+  },
   code0: {
     display: 'block'
   },
@@ -333,7 +337,9 @@ class Sort extends Component {
         <div className={classes.container}>
           <h2 className={classes.title} onClick={this.handleToggleDescriptionClick}>Insertion Sort</h2>
           {this.props.showDescription && <div>
-            <p>Insertion sort iterates, consuming one input element each repetition, and growing a sorted output list. At each iteration, insertion sort removes one element from the input data, finds the location it belongs within the sorted list, and inserts it there. It repeats until no input elements remain. Enter array [6, 5, 3, 1, 8, 7, 2, 4] to see an animated demonstration</p>
+            <p>Insertion sort iterates, consuming one input element each repetition, and growing a sorted output list. At each iteration, insertion sort removes one element from the input data, finds the location it belongs within the sorted list, and inserts it there. It repeats until no input elements remain.</p>
+            <p>Enter array [6, 5, 3, 1, 8, 7, 2, 4] to see an animated demonstration of the algorithm.</p>
+            <h4 className={classes.sourceCode}>Source Code</h4>
             {this.makeSource()}
           </div>}
           <div className={classes.inputRow}>

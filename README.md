@@ -5,8 +5,8 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 #### [Detail description to follow]
 
 ## Installation
-1. Ensure you have git and npm installed
-2. Clone Repository
-`git clone https://github.com/rafurr/react-sandbox.git`
-3. Then from the directory `npm install`
-4. Then to run the application `npm start`
+1. Install `git` and `npm` if not installed
+2. Clone Repository `git clone https://github.com/rafurr/react-sandbox.git`
+3. Change Directory `cd react-sandbox`
+4. Install Dependencies `npm install`
+5. Run Application `npm start`

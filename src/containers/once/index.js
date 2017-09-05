@@ -44,6 +44,10 @@ const styles = {
   exampleTitle: {
     marginBottom: 5,
   },
+  sourceCode: {
+    marginTop: 0,
+    marginBottom: 0,
+  },
   code0: {
     display: 'block'
   },
@@ -153,12 +157,13 @@ class Once extends Component {
           <h2 className={classes.title} onClick={this.handleToggleDescriptionClick}>Once</h2>
           {this.props.showDescription && <div>
             <p>The once function creates a version of the function that can only be called one time. Repeated calls to the modified function will have no effect, returning the value from the original call. Useful for initialization functions, instead of having to set a boolean flag and then check it later.</p>
+            <h4 className={classes.sourceCode}>Source Code</h4>
             {this.makeSource()}
           </div>}
           <h4 className={classes.exampleTitle}>Example</h4>
           {this.makeExample()}
+          <h4>When the button below is pressed, the output will be logged to the console. Open the browser Console to verify.</h4>
           <Button raised className={classes.spacer} onClick={this.handleOnceClick}>Once</Button>
-          <h4>Output will be logged to the console. Open the console window to verify.</h4>
         </div>
 
         <LeftDrawer
