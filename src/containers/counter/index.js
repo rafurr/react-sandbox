@@ -55,8 +55,9 @@ const styles = {
   container: {
     margin: 10
   },
-  spacer: {
-    marginRight: 10
+  button: {
+    marginRight: 10,
+    width: 180
   },
   title: {
     marginTop: 5,
@@ -91,14 +92,14 @@ class Counter extends Component {
             <p>
               <Button
                 raised
-                className={classes.spacer}
+                className={classes.button}
                 disabled={this.props.isIncrementing}
                 onClick={this.props.increment}>
                 Increment
               </Button>
               <Button
                 raised
-                className={classes.spacer}
+                className={classes.button}
                 disabled={this.props.isIncrementing}
                 onClick={this.props.incrementAsync}>
                 Increment Async
@@ -108,13 +109,14 @@ class Counter extends Component {
             <p>
               <Button
                 raised
-                className={classes.spacer}
+                className={classes.button}
                 disabled={this.props.isDecrementing}
                 onClick={this.props.decrement}>
-                Decrementing
+                Decrement
               </Button>
               <Button
                 raised
+                className={classes.button}
                 disabled={this.props.isDecrementing}
                 onClick={this.props.decrementAsync}>
                 Decrement Async
