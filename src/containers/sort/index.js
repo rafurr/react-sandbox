@@ -59,6 +59,18 @@ const styles = {
   animation: {
     display: 'block'
   },
+  fixedTop: {
+    position: 'fixed',
+    width: '100%',
+    top: 0,
+    zIndex: 1000
+  },
+  scrollableContainer: {
+    top: 0,
+    marginTop: 56,
+    marginBottom: 56,
+    position: 'absolute'
+  },
   container: {
     margin: 10
   },
@@ -334,47 +346,51 @@ class Sort extends Component {
 
     return (
       <div>
-        <TitleBar title="Sort" onOpenDrawer={this.props.openLeftDrawer} />
+        <div className={classes.fixedTop}>
+          <TitleBar title="Sort" onOpenDrawer={this.props.openLeftDrawer} />
+        </div>
 
-        <div className={classes.container}>
-          <h2 className={classes.title} onClick={this.handleToggleDescriptionClick}>Insertion Sort</h2>
-          {this.props.showDescription && <div>
-            <p>Insertion sort iterates, consuming one input element each repetition, and growing a sorted output list. At each iteration, insertion sort removes one element from the input data, finds the location it belongs within the sorted list, and inserts it there. It repeats until no input elements remain.</p>
-            <p>Enter array [6, 5, 3, 1, 8, 7, 2, 4] to see an animated demonstration of the algorithm.</p>
-            <h4 className={classes.sourceCode}>Source Code</h4>
-            {this.makeSource()}
-          </div>}
-          <div className={classes.inputRow}>
-            <TextField
-              id="unsortedArray"
-              label="Unsorted Array"
-              className={classes.textField}
-              value={this.state.unsortedArrayStr}
-              onChange={this.handleUnsortedArrayChange}
-              margin="normal"/>
-            <Button raised disabled={!this.state.validArray} onClick={this.handleSortClick}>Sort</Button>
-            <Button raised className={classes.reset} onClick={this.handleResetClick}>Reset</Button>
+        <div className={classes.scrollableContainer}>
+          <div className={classes.container}>
+            <h2 className={classes.title} onClick={this.handleToggleDescriptionClick}>Insertion Sort</h2>
+            {this.props.showDescription && <div>
+              <p>Insertion sort iterates, consuming one input element each repetition, and growing a sorted output list. At each iteration, insertion sort removes one element from the input data, finds the location it belongs within the sorted list, and inserts it there. It repeats until no input elements remain.</p>
+              <p>Enter array [6, 5, 3, 1, 8, 7, 2, 4] to see an animated demonstration of the algorithm.</p>
+              <h4 className={classes.sourceCode}>Source Code</h4>
+              {this.makeSource()}
+            </div>}
+            <div className={classes.inputRow}>
+              <TextField
+                id="unsortedArray"
+                label="Unsorted Array"
+                className={classes.textField}
+                value={this.state.unsortedArrayStr}
+                onChange={this.handleUnsortedArrayChange}
+                margin="normal"/>
+              <Button raised disabled={!this.state.validArray} onClick={this.handleSortClick}>Sort</Button>
+              <Button raised className={classes.reset} onClick={this.handleResetClick}>Reset</Button>
+            </div>
+
+            {this.state.validArray && <div className={classes.row}>
+              <h4 className={classes.label}>Unsorted Array</h4>
+            </div>}
+            {this.state.validArray && <div className={classes.row}>
+              {this.state.unsortedArray.map((item, index) => <Avatar key={'unsorted'+index} className={classes.orangeAvatar}>{item.toString()}</Avatar>)}
+            </div>}
+
+            {this.props.sortedArray && <div className={classes.row}>
+              <h4 className={classes.label}>Sorted Array</h4>
+            </div>}
+            {this.props.sortedArray && <div className={classes.row}>
+              {this.props.sortedArray.map((item, index) => <Avatar key={'sorted'+index} className={classes.blueAvatar}>{item.toString()}</Avatar>)}
+            </div>}
+
+            {showAnimation && <Button raised className={classes.showHideAnimation} onClick={this.handleShowHideAnimationClick}>{propsShowAnimation ? 'Hide Animation' : 'Show Animation'}</Button>}
+            {this.props.steps && <Button raised className={classes.showHideSteps} onClick={this.handleShowHideStepsClick}>{this.props.showSteps ? 'Hide Steps' : 'Show Steps'}</Button>}
+            {this.props.steps && <Button raised className={classes.logSteps} onClick={this.handleLogStepsClick}>Log Steps</Button>}
+            {propsShowAnimation && <img className={classes.animation} id="animation" src={animation} alt="Animation"/>}
+            {this.props.showSteps && this.props.steps.map((step, index) => this.makeStep(step, index))}
           </div>
-
-          {this.state.validArray && <div className={classes.row}>
-            <h4 className={classes.label}>Unsorted Array</h4>
-          </div>}
-          {this.state.validArray && <div className={classes.row}>
-            {this.state.unsortedArray.map((item, index) => <Avatar key={'unsorted'+index} className={classes.orangeAvatar}>{item.toString()}</Avatar>)}
-          </div>}
-
-          {this.props.sortedArray && <div className={classes.row}>
-            <h4 className={classes.label}>Sorted Array</h4>
-          </div>}
-          {this.props.sortedArray && <div className={classes.row}>
-            {this.props.sortedArray.map((item, index) => <Avatar key={'sorted'+index} className={classes.blueAvatar}>{item.toString()}</Avatar>)}
-          </div>}
-
-          {showAnimation && <Button raised className={classes.showHideAnimation} onClick={this.handleShowHideAnimationClick}>{propsShowAnimation ? 'Hide Animation' : 'Show Animation'}</Button>}
-          {this.props.steps && <Button raised className={classes.showHideSteps} onClick={this.handleShowHideStepsClick}>{this.props.showSteps ? 'Hide Steps' : 'Show Steps'}</Button>}
-          {this.props.steps && <Button raised className={classes.logSteps} onClick={this.handleLogStepsClick}>Log Steps</Button>}
-          {propsShowAnimation && <img className={classes.animation} id="animation" src={animation} alt="Animation"/>}
-          {this.props.showSteps && this.props.steps.map((step, index) => this.makeStep(step, index))}
         </div>
 
         <LeftDrawer

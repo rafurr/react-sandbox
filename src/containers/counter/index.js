@@ -40,6 +40,18 @@ const mapDispatchToProps = dispatch => bindActionCreators({
 }, dispatch)
 
 const styles = {
+  fixedTop: {
+    position: 'fixed',
+    width: '100%',
+    top: 0,
+    zIndex: 1000
+  },
+  scrollableContainer: {
+    top: 0,
+    marginTop: 56,
+    marginBottom: 56,
+    position: 'absolute'
+  },
   container: {
     margin: 10
   },
@@ -64,47 +76,51 @@ class Counter extends Component {
 
     return (
       <div>
-        <TitleBar title="Counter" onOpenDrawer={this.props.openLeftDrawer} />
+        <div className={classes.fixedTop}>
+          <TitleBar title="Counter" onOpenDrawer={this.props.openLeftDrawer} />
+        </div>
 
-        <div className={classes.container}>
-          <h2 className={classes.title} onClick={this.handleToggleDescriptionClick}>Counter</h2>
-          {this.props.showDescription && <div>
-            <p>Counter demonstrates how to use Redux to update state data.</p>
-          </div>}
-          <p>Count: {this.props.count}</p>
+        <div className={classes.scrollableContainer}>
+          <div className={classes.container}>
+            <h2 className={classes.title} onClick={this.handleToggleDescriptionClick}>Counter</h2>
+            {this.props.showDescription && <div>
+              <p>Counter demonstrates how to use Redux to update state data.</p>
+            </div>}
+            <p>Count: {this.props.count}</p>
 
-          <p>
-            <Button
-              raised
-              className={classes.spacer}
-              disabled={this.props.isIncrementing}
-              onClick={this.props.increment}>
-              Increment
-            </Button>
-            <Button
-              raised
-              className={classes.spacer}
-              disabled={this.props.isIncrementing}
-              onClick={this.props.incrementAsync}>
-              Increment Async
-            </Button>
-          </p>
+            <p>
+              <Button
+                raised
+                className={classes.spacer}
+                disabled={this.props.isIncrementing}
+                onClick={this.props.increment}>
+                Increment
+              </Button>
+              <Button
+                raised
+                className={classes.spacer}
+                disabled={this.props.isIncrementing}
+                onClick={this.props.incrementAsync}>
+                Increment Async
+              </Button>
+            </p>
 
-          <p>
-            <Button
-              raised
-              className={classes.spacer}
-              disabled={this.props.isDecrementing}
-              onClick={this.props.decrement}>
-              Decrementing
-            </Button>
-            <Button
-              raised
-              disabled={this.props.isDecrementing}
-              onClick={this.props.decrementAsync}>
-              Decrement Async
-            </Button>
-          </p>
+            <p>
+              <Button
+                raised
+                className={classes.spacer}
+                disabled={this.props.isDecrementing}
+                onClick={this.props.decrement}>
+                Decrementing
+              </Button>
+              <Button
+                raised
+                disabled={this.props.isDecrementing}
+                onClick={this.props.decrementAsync}>
+                Decrement Async
+              </Button>
+            </p>
+          </div>
         </div>
 
         <LeftDrawer

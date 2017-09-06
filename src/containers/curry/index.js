@@ -30,6 +30,18 @@ const mapDispatchToProps = dispatch => bindActionCreators({
 }, dispatch)
 
 const styles = {
+  fixedTop: {
+    position: 'fixed',
+    width: '100%',
+    top: 0,
+    zIndex: 1000
+  },
+  scrollableContainer: {
+    top: 0,
+    marginTop: 56,
+    marginBottom: 56,
+    position: 'absolute'
+  },
   container: {
     margin: 10
   },
@@ -148,19 +160,23 @@ class Curry extends Component {
 
     return (
       <div>
-        <TitleBar title="Curry" onOpenDrawer={this.props.openLeftDrawer} />
+        <div className={classes.fixedTop}>
+          <TitleBar title="Curry" onOpenDrawer={this.props.openLeftDrawer} />
+        </div>
 
-        <div className={classes.container}>
-          <h2 className={classes.title} onClick={this.handleToggleDescriptionClick}>Curry</h2>
-          {this.props.showDescription && <div>
-            <p>The curry function creates a version of a function that allows partial application of a function’s arguments. What this means is that you can pass all of the arguments a function is expecting and get the result, or pass a subset of those arguments and get a function back that’s waiting for the rest of the arguments.</p>
-            <h4 className={classes.sourceCode}>Source Code</h4>
-            {this.makeSource()}
-          </div>}
-          <h4 className={classes.exampleTitle}>Example</h4>
-          {this.makeExample()}
-          <h4>When the button below is pressed, the output will be logged to the console. Open the browser Console to verify.</h4>
-          <Button raised className={classes.spacer} onClick={this.handleCurryClick}>Curry</Button>
+        <div className={classes.scrollableContainer}>
+          <div className={classes.container}>
+            <h2 className={classes.title} onClick={this.handleToggleDescriptionClick}>Curry</h2>
+            {this.props.showDescription && <div>
+              <p>The curry function creates a version of a function that allows partial application of a function’s arguments. What this means is that you can pass all of the arguments a function is expecting and get the result, or pass a subset of those arguments and get a function back that’s waiting for the rest of the arguments.</p>
+              <h4 className={classes.sourceCode}>Source Code</h4>
+              {this.makeSource()}
+            </div>}
+            <h4 className={classes.exampleTitle}>Example</h4>
+            {this.makeExample()}
+            <h4>When the button below is pressed, the output will be logged to the console. Open the browser Console to verify.</h4>
+            <Button raised className={classes.spacer} onClick={this.handleCurryClick}>Curry</Button>
+          </div>
         </div>
 
         <LeftDrawer

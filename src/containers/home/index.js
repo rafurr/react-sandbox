@@ -34,12 +34,12 @@ const styles = {
     top: 0,
     zIndex: 1000
   },
-  mainContainer: {
+  scrollableContainer: {
     top: 0,
     marginTop: 56,
     marginBottom: 56,
     position: 'absolute'
-},
+  },
   container: {
     margin: 10
   },
@@ -71,7 +71,7 @@ class Home extends Component {
           <TitleBar title="Home" onOpenDrawer={this.props.openLeftDrawer} />
         </div>
 
-        <div className={classes.mainContainer}>
+        <div className={classes.scrollableContainer}>
           <div className={classes.container}>
             {showHeader && <header>
               <Link className={classes.spacer} to="/">Home</Link>

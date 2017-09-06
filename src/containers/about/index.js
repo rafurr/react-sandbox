@@ -25,6 +25,18 @@ const mapDispatchToProps = dispatch => bindActionCreators({
 }, dispatch)
 
 const styles = {
+  fixedTop: {
+    position: 'fixed',
+    width: '100%',
+    top: 0,
+    zIndex: 1000
+  },
+  scrollableContainer: {
+    top: 0,
+    marginTop: 56,
+    marginBottom: 56,
+    position: 'absolute'
+  },
   container: {
     margin: 10
   },
@@ -40,20 +52,24 @@ class About extends Component {
 
     return (
       <div>
-        <TitleBar title="About" onOpenDrawer={this.props.openLeftDrawer} />
+        <div className={classes.fixedTop}>
+          <TitleBar title="About" onOpenDrawer={this.props.openLeftDrawer} />
+        </div>
 
-        <div className={classes.container}>
-          <h2>About</h2>
-          <p>This application was developed by Robert Furr.</p>
-          <div>
-            <Button onClick={() => this.props.history.push('/')}>
-              <HomeIcon /> Home
-            </Button>
-          </div>
-          <div>
-            <Button onClick={() => this.props.history.push('/bad-link')}>
-              <HomeIcon /> Bad Link
-            </Button>
+        <div className={classes.scrollableContainer}>
+          <div className={classes.container}>
+            <h2>About</h2>
+            <p>This application was developed by Robert Furr.</p>
+            <div>
+              <Button onClick={() => this.props.history.push('/')}>
+                <HomeIcon /> Home
+              </Button>
+            </div>
+            <div>
+              <Button onClick={() => this.props.history.push('/bad-link')}>
+                <HomeIcon /> Bad Link
+              </Button>
+            </div>
           </div>
         </div>
 
