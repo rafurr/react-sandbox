@@ -1,39 +1,36 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
-import { bindActionCreators } from 'redux'
-import { connect } from 'react-redux'
+import {bindActionCreators} from 'redux'
+import {connect} from 'react-redux'
 
-import { withStyles } from 'material-ui/styles'
+import {withStyles} from 'material-ui/styles'
 import Button from 'material-ui/Button'
 
 import HomeIcon from 'mdi-react/HomeCircleIcon'
 
-import {} from '../../modules/view'
+import '../../modules/view'
 
 const mapStateToProps = state => ({})
 
 const mapDispatchToProps = dispatch => bindActionCreators({}, dispatch)
 
 const styles = {
-  view: {
-  },
-  container: {
-  },
+  view: {},
+  container: {},
   title: {
     paddingTop: 10,
-    marginBottom: 5
+    marginBottom: 5,
   },
   subTitle: {
     marginTop: 5,
-    marginBottom: 5
+    marginBottom: 5,
   },
   spacer: {
-    marginRight: 10
-  }
+    marginRight: 10,
+  },
 }
 
 class Error404 extends Component {
-
   render() {
     const classes = this.props.classes
 
@@ -42,15 +39,16 @@ class Error404 extends Component {
     return (
       <div id="error-404-view" className={classes.view}>
 
-        {show && <div id="error-404-container" className={classes.container}>
-          <h2 className={classes.title}>Error 404 - Page Not Found</h2>
-          <h3 className={classes.subTitle}>Go Gators or Go Home</h3>
-          <div>
-            <Button onClick={() => this.props.history.push('/')}>
-              <HomeIcon /> Home
-            </Button>
-          </div>
-        </div>}
+        {show &&
+          <div id="error-404-container" className={classes.container}>
+            <h2 className={classes.title}>Error 404 - Page Not Found</h2>
+            <h3 className={classes.subTitle}>Go Gators or Go Home</h3>
+            <div>
+              <Button onClick={() => this.props.history.push('/')}>
+                <HomeIcon /> Home
+              </Button>
+            </div>
+          </div>}
 
       </div>
     )
@@ -58,10 +56,9 @@ class Error404 extends Component {
 }
 
 Error404.propTypes = {
-  classes: PropTypes.object.isRequired
+  classes: PropTypes.object.isRequired,
 }
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(withStyles(styles)(Error404))
+export default connect(mapStateToProps, mapDispatchToProps)(
+  withStyles(styles)(Error404)
+)

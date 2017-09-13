@@ -1,57 +1,56 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
-import { bindActionCreators } from 'redux'
-import { connect } from 'react-redux'
+import {bindActionCreators} from 'redux'
+import {connect} from 'react-redux'
 
-import { withStyles } from 'material-ui/styles'
+import {withStyles} from 'material-ui/styles'
 import Button from 'material-ui/Button'
 
 import {TitleBar, LeftDrawer} from '../../components'
 import {curry} from '../../utils/curry'
 
-import {
-  openLeftDrawer,
-  closeLeftDrawer
-} from '../../modules/view'
+import {openLeftDrawer, closeLeftDrawer} from '../../modules/view'
 
-import {
-  toggleDescription,
-} from '../../modules/curry'
+import {toggleDescription} from '../../modules/curry'
 
 const mapStateToProps = state => ({
   leftDrawerOpen: state.view.leftDrawerOpen,
-  showDescription: state.curry.showDescription
+  showDescription: state.curry.showDescription,
 })
 
-const mapDispatchToProps = dispatch => bindActionCreators({
-  openLeftDrawer,
-  closeLeftDrawer,
-  toggleDescription
-}, dispatch)
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(
+    {
+      openLeftDrawer,
+      closeLeftDrawer,
+      toggleDescription,
+    },
+    dispatch
+  )
 
 const styles = {
   fixedTop: {
     position: 'fixed',
     width: '100%',
     top: 0,
-    zIndex: 1000
+    zIndex: 1000,
   },
   scrollableContainer: {
     top: 0,
     marginTop: 56,
     marginBottom: 56,
-    position: 'absolute'
+    position: 'absolute',
   },
   container: {
-    margin: 10
+    margin: 10,
   },
   spacer: {
-    marginRight: 10
+    marginRight: 10,
   },
   title: {
     marginTop: 5,
     marginBottom: 5,
-    cursor: 'pointer'
+    cursor: 'pointer',
   },
   exampleTitle: {
     marginBottom: 5,
@@ -61,34 +60,31 @@ const styles = {
     marginBottom: 0,
   },
   code0: {
-    display: 'block'
+    display: 'block',
   },
   code1: {
     display: 'block',
-    marginLeft: 15
+    marginLeft: 15,
   },
   code2: {
     display: 'block',
-    marginLeft: 30
+    marginLeft: 30,
   },
   code3: {
     display: 'block',
-    marginLeft: 45
-  }
+    marginLeft: 45,
+  },
 }
 
 class Curry extends Component {
-
   makeSourceLine = (line, index, classes) => {
-    const lineClass = line.startsWith("      ")
+    const lineClass = line.startsWith('      ')
       ? classes.code3
-      : line.startsWith("    ")
+      : line.startsWith('    ')
         ? classes.code2
-        : line.startsWith("  ") ? classes.code1 : classes.code0;
+        : line.startsWith('  ') ? classes.code1 : classes.code0
 
-    return (
-      <code key={'line'+index} className={lineClass}>{line}</code>
-    )
+    return <code key={'line' + index} className={lineClass}>{line}</code>
   }
 
   makeSource = () => {
@@ -111,7 +107,7 @@ class Curry extends Component {
       '    }',
       '  }',
       '  return curried',
-      '}'
+      '}',
     ]
 
     return (
@@ -130,7 +126,7 @@ class Curry extends Component {
       '}',
       'const curried = curry(add)',
       'console.log(curried(1)(2))',
-      '// 3'
+      '// 3',
     ]
 
     return (
@@ -166,16 +162,36 @@ class Curry extends Component {
 
         <div className={classes.scrollableContainer}>
           <div className={classes.container}>
-            <h2 className={classes.title} onClick={this.handleToggleDescriptionClick}>Curry</h2>
-            {this.props.showDescription && <div>
-              <p>The curry function creates a version of a function that allows partial application of a function’s arguments. What this means is that you can pass all of the arguments a function is expecting and get the result, or pass a subset of those arguments and get a function back that’s waiting for the rest of the arguments.</p>
-              <h4 className={classes.sourceCode}>Source Code</h4>
-              {this.makeSource()}
-            </div>}
+            <h2
+              className={classes.title}
+              onClick={this.handleToggleDescriptionClick}>
+              Curry
+            </h2>
+            {this.props.showDescription &&
+              <div>
+                <p>
+                  The curry function creates a version of a function that allows
+                  partial application of a function’s arguments. What this means
+                  is that you can pass all of the arguments a function is
+                  expecting and get the result, or pass a subset of those
+                  arguments and get a function back that’s waiting for the rest
+                  of the arguments.
+                </p>
+                <h4 className={classes.sourceCode}>Source Code</h4>
+                {this.makeSource()}
+              </div>}
             <h4 className={classes.exampleTitle}>Example</h4>
             {this.makeExample()}
-            <h4>When the button below is pressed, the output will be logged to the console. Open the browser Console to verify.</h4>
-            <Button raised className={classes.spacer} onClick={this.handleCurryClick}>Curry</Button>
+            <h4>
+              When the button below is pressed, the output will be logged to the
+              console. Open the browser Console to verify.
+            </h4>
+            <Button
+              raised
+              className={classes.spacer}
+              onClick={this.handleCurryClick}>
+              Curry
+            </Button>
           </div>
         </div>
 
@@ -183,7 +199,8 @@ class Curry extends Component {
           open={this.props.leftDrawerOpen}
           history={this.props.history}
           onRequestClose={this.props.closeLeftDrawer}
-          onClick={this.props.closeLeftDrawer} />
+          onClick={this.props.closeLeftDrawer}
+        />
 
       </div>
     )
@@ -194,7 +211,6 @@ Curry.propTypes = {
   classes: PropTypes.object.isRequired,
 }
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(withStyles(styles)(Curry))
+export default connect(mapStateToProps, mapDispatchToProps)(
+  withStyles(styles)(Curry)
+)

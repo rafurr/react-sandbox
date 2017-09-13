@@ -1,7 +1,7 @@
 export const TOGGLE_DESCRIPTION = 'curry/TOGGLE_DESCRIPTION'
 
 const initialState = {
-  showDescription: false
+  showDescription: false,
 }
 
 export default (state = initialState, action) => {
@@ -9,7 +9,7 @@ export default (state = initialState, action) => {
     case TOGGLE_DESCRIPTION:
       return {
         ...state,
-        showDescription: !state.showDescription
+        showDescription: !state.showDescription,
       }
 
     default:

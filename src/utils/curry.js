@@ -1,12 +1,12 @@
-export const makeArray = (args) => {
+export const makeArray = args => {
   return Array.prototype.slice.apply(args)
 }
 
-export const curry = (fn) => {
-  function curried () {
+export const curry = fn => {
+  function curried() {
     if (arguments.length < fn.length) {
       const args = makeArray(arguments)
-      return function () {
+      return function() {
         return curried.apply(this, args.concat(makeArray(arguments)))
       }
     } else {

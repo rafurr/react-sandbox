@@ -1,5 +1,5 @@
-import { combineReducers } from 'redux'
-import { routerReducer } from 'react-router-redux'
+import {combineReducers} from 'redux'
+import {routerReducer} from 'react-router-redux'
 import view from './view'
 import sort from './sort'
 import once from './once'
@@ -12,5 +12,5 @@ export default combineReducers({
   sort,
   once,
   curry,
-  counter
+  counter,
 })

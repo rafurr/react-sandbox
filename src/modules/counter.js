@@ -8,7 +8,7 @@ const initialState = {
   count: 0,
   isIncrementing: false,
   isDecrementing: false,
-  showDescription: false
+  showDescription: false,
 }
 
 export default (state = initialState, action) => {
@@ -16,33 +16,33 @@ export default (state = initialState, action) => {
     case INCREMENT_REQUESTED:
       return {
         ...state,
-        isIncrementing: true
+        isIncrementing: true,
       }
 
     case INCREMENT:
       return {
         ...state,
         count: state.count + 1,
-        isIncrementing: !state.isIncrementing
+        isIncrementing: !state.isIncrementing,
       }
 
     case DECREMENT_REQUESTED:
       return {
         ...state,
-        isDecrementing: true
+        isDecrementing: true,
       }
 
     case DECREMENT:
       return {
         ...state,
         count: state.count - 1,
-        isDecrementing: !state.isDecrementing
+        isDecrementing: !state.isDecrementing,
       }
 
     case TOGGLE_DESCRIPTION:
       return {
         ...state,
-        showDescription: !state.showDescription
+        showDescription: !state.showDescription,
       }
 
     default:
@@ -53,11 +53,11 @@ export default (state = initialState, action) => {
 export const increment = () => {
   return dispatch => {
     dispatch({
-      type: INCREMENT_REQUESTED
+      type: INCREMENT_REQUESTED,
     })
 
     dispatch({
-      type: INCREMENT
+      type: INCREMENT,
     })
   }
 }
@@ -65,12 +65,12 @@ export const increment = () => {
 export const incrementAsync = () => {
   return dispatch => {
     dispatch({
-      type: INCREMENT_REQUESTED
+      type: INCREMENT_REQUESTED,
     })
 
     return setTimeout(() => {
       dispatch({
-        type: INCREMENT
+        type: INCREMENT,
       })
     }, 3000)
   }
@@ -79,11 +79,11 @@ export const incrementAsync = () => {
 export const decrement = () => {
   return dispatch => {
     dispatch({
-      type: DECREMENT_REQUESTED
+      type: DECREMENT_REQUESTED,
     })
 
     dispatch({
-      type: DECREMENT
+      type: DECREMENT,
     })
   }
 }
@@ -91,12 +91,12 @@ export const decrement = () => {
 export const decrementAsync = () => {
   return dispatch => {
     dispatch({
-      type: DECREMENT_REQUESTED
+      type: DECREMENT_REQUESTED,
     })
 
     return setTimeout(() => {
       dispatch({
-        type: DECREMENT
+        type: DECREMENT,
       })
     }, 3000)
   }

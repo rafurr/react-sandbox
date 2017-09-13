@@ -1,13 +1,13 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
-import { bindActionCreators } from 'redux'
-import { connect } from 'react-redux'
+import {bindActionCreators} from 'redux'
+import {connect} from 'react-redux'
 
-import animation from '../../images/insertion-sort.gif';
+import animation from '../../images/insertion-sort.gif'
 
-import { withStyles } from 'material-ui/styles'
+import {withStyles} from 'material-ui/styles'
 import Button from 'material-ui/Button'
-import TextField from 'material-ui/TextField';
+import TextField from 'material-ui/TextField'
 import Avatar from 'material-ui/Avatar'
 import orange from 'material-ui/colors/orange'
 import blue from 'material-ui/colors/blue'
@@ -15,10 +15,7 @@ import blue from 'material-ui/colors/blue'
 import {TitleBar, LeftDrawer} from '../../components'
 import {insertionSortWithCallback} from '../../utils/sort'
 
-import {
-  openLeftDrawer,
-  closeLeftDrawer
-} from '../../modules/view'
+import {openLeftDrawer, closeLeftDrawer} from '../../modules/view'
 
 import {
   beginSorting,
@@ -39,67 +36,71 @@ const mapStateToProps = state => ({
   showAnimation: state.sort.showAnimation,
   showDescription: state.sort.showDescription,
   unsortedArray: state.sort.unsortedArray,
-  sortedArray: state.sort.sortedArray
+  sortedArray: state.sort.sortedArray,
 })
 
-const mapDispatchToProps = dispatch => bindActionCreators({
-  openLeftDrawer,
-  closeLeftDrawer,
-  beginSorting,
-  endSorting,
-  addStep,
-  reset,
-  toggleSteps,
-  toggleAnimation,
-  toggleDescription,
-  setSortedArray
-}, dispatch)
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(
+    {
+      openLeftDrawer,
+      closeLeftDrawer,
+      beginSorting,
+      endSorting,
+      addStep,
+      reset,
+      toggleSteps,
+      toggleAnimation,
+      toggleDescription,
+      setSortedArray,
+    },
+    dispatch
+  )
 
 const styles = {
   animation: {
-    display: 'block'
+    display: 'block',
   },
   fixedTop: {
     position: 'fixed',
     width: '100%',
     top: 0,
-    zIndex: 1000
+    zIndex: 1000,
   },
   scrollableContainer: {
     top: 0,
     marginTop: 56,
     marginBottom: 56,
-    position: 'absolute'
+    position: 'absolute',
   },
   container: {
-    margin: 10
+    margin: 10,
   },
   spacer: {
-    marginRight: 10
+    marginRight: 10,
   },
   title: {
     marginTop: 5,
     marginBottom: 5,
-    cursor: 'pointer'
+    cursor: 'pointer',
   },
   sourceCode: {
     marginTop: 0,
     marginBottom: 0,
   },
   code0: {
-    display: 'block'
+    display: 'block',
   },
   code1: {
     display: 'block',
-    marginLeft: 15
+    marginLeft: 15,
   },
   code2: {
     display: 'block',
-    marginLeft: 30
+    marginLeft: 30,
   },
   code3: {
     display: 'block',
-    marginLeft: 45
+    marginLeft: 45,
   },
   orangeAvatar: {
     width: 35,
@@ -107,7 +108,7 @@ const styles = {
     fontSize: 16,
     margin: '0 5px 0 0',
     color: '#fff',
-    backgroundColor: orange[500]
+    backgroundColor: orange[500],
   },
   blueAvatar: {
     width: 35,
@@ -115,7 +116,7 @@ const styles = {
     fontSize: 16,
     margin: '0 5px 0 0',
     color: '#fff',
-    backgroundColor: blue[500]
+    backgroundColor: blue[500],
   },
   inputRow: {
     marginBottom: 10,
@@ -132,34 +133,33 @@ const styles = {
   },
   textField: {
     marginRight: 10,
-    width: 300
+    width: 300,
   },
   step: {
     marginTop: 10,
-    minHeight: 1
+    minHeight: 1,
   },
   showHideSteps: {
     width: 160,
-    marginRight: 10
+    marginRight: 10,
   },
   showHideAnimation: {
     width: 160,
-    marginRight: 10
+    marginRight: 10,
   },
   logSteps: {
     width: 160,
   },
   reset: {
-    marginLeft: 10
-  }
+    marginLeft: 10,
+  },
 }
 
 class Sort extends Component {
-
   state = {
     validArray: true,
     unsortedArray: [5, 1, 4, 2, 3],
-    unsortedArrayStr: '[5, 1, 4, 2, 3]'
+    unsortedArrayStr: '[5, 1, 4, 2, 3]',
     // unsortedArray: [6, 5, 3, 1, 8, 7, 2, 4],
     // unsortedArrayStr: '[6, 5, 3, 1, 8, 7, 2, 4]'
   }
@@ -171,10 +171,14 @@ class Sort extends Component {
   handleUnsortedArrayChange = event => {
     let str = event.target.value
     let validArray = false
-    try {validArray = JSON.parse(str)} catch(e) {}
+    try {
+      validArray = JSON.parse(str)
+    } catch (e) {}
     if (validArray) {
       if (validArray.length > 0 && validArray.length <= 10) {
-        validArray.forEach(item => validArray = typeof item === 'number' ? validArray : false)
+        validArray.forEach(
+          item => (validArray = typeof item === 'number' ? validArray : false)
+        )
       } else {
         validArray = false
       }
@@ -183,13 +187,13 @@ class Sort extends Component {
     this.setState({
       validArray: validArray,
       unsortedArray: validArray,
-      unsortedArrayStr: str
+      unsortedArrayStr: str,
     })
 
     this.props.reset()
   }
 
-  sortCallback = (step) => {
+  sortCallback = step => {
     this.props.addStep(step)
   }
 
@@ -232,7 +236,7 @@ class Sort extends Component {
     this.setState({
       validArray: true,
       unsortedArray: [5, 1, 4, 2, 3],
-      unsortedArrayStr: '[5, 1, 4, 2, 3]'
+      unsortedArrayStr: '[5, 1, 4, 2, 3]',
       // unsortedArray: [6, 5, 3, 1, 8, 7, 2, 4],
       // unsortedArrayStr: '[6, 5, 3, 1, 8, 7, 2, 4]'
     })
@@ -240,29 +244,35 @@ class Sort extends Component {
     this.props.reset()
   }
 
-  arrayToString = (arr) => {
-    return '['+arr.toString()+']'
+  arrayToString = arr => {
+    return '[' + arr.toString() + ']'
   }
 
-  makeString = (step) => {
+  makeString = step => {
     let str
 
-    switch(step.type) {
+    switch (step.type) {
       case 'before':
         str = `Unsorted ${this.arrayToString(step.arr)}`
-        break;
+        break
       case 'copy':
-        str = `Copy ${step.item} From ${step.from} \u27f8 ${this.arrayToString(step.arr)}`
-        break;
+        str = `Copy ${step.item} From ${step.from} \u27f8 ${this.arrayToString(
+          step.arr
+        )}`
+        break
       case 'shift':
-        str = `Shift ${step.item} From ${step.from} To ${step.to} \u27f9 ${this.arrayToString(step.arr)}`
-        break;
+        str = `Shift ${step.item} From ${step.from} To ${step.to} \u27f9 ${this.arrayToString(
+          step.arr
+        )}`
+        break
       case 'insert':
-        str = `Insert ${step.item} At ${step.at} \u27f9 ${this.arrayToString(step.arr)}`
-        break;
+        str = `Insert ${step.item} At ${step.at} \u27f9 ${this.arrayToString(
+          step.arr
+        )}`
+        break
       case 'after':
         str = `Sorted ${this.arrayToString(step.arr)}`
-        break;
+        break
       default:
         str = ''
     }
@@ -270,25 +280,27 @@ class Sort extends Component {
     return str
   }
 
-  logSteps = (steps) => {
+  logSteps = steps => {
     console.clear()
     steps.forEach(step => console.log(this.makeString(step)))
   }
 
   makeStep = (step, index) => {
-    return <div key={'step'+index} className={this.props.classes.step}>{this.makeString(step)}</div>
+    return (
+      <div key={'step' + index} className={this.props.classes.step}>
+        {this.makeString(step)}
+      </div>
+    )
   }
 
   makeSourceLine = (line, index, classes) => {
-    const lineClass = line.startsWith("      ")
+    const lineClass = line.startsWith('      ')
       ? classes.code3
-      : line.startsWith("    ")
+      : line.startsWith('    ')
         ? classes.code2
-        : line.startsWith("  ") ? classes.code1 : classes.code0;
+        : line.startsWith('  ') ? classes.code1 : classes.code0
 
-    return (
-      <code key={'line'+index} className={lineClass}>{line}</code>
-    )
+    return <code key={'line' + index} className={lineClass}>{line}</code>
   }
 
   makeSource = () => {
@@ -312,7 +324,7 @@ class Sort extends Component {
       '    // At the correct position in sorted part',
       '    arr[j + 1] = tmp',
       '  }',
-      '}'
+      '}',
     ]
 
     return (
@@ -322,7 +334,7 @@ class Sort extends Component {
     )
   }
 
-  resetGif = (id) => {
+  resetGif = id => {
     // reset an animated gif to start at first image without reloading it from server.
     // Note: if you have the same image on the page more than ones, they all reset.
     const img = document.getElementById(id)
@@ -339,7 +351,9 @@ class Sort extends Component {
 
     let showAnimation = false
     if (this.props.steps) {
-      showAnimation = [6, 5, 3, 1, 8, 7, 2, 4].toString() === this.state.unsortedArray.toString()
+      showAnimation =
+        [6, 5, 3, 1, 8, 7, 2, 4].toString() ===
+        this.state.unsortedArray.toString()
     }
 
     const propsShowAnimation = Boolean(this.props.showAnimation % 2)
@@ -352,13 +366,28 @@ class Sort extends Component {
 
         <div className={classes.scrollableContainer}>
           <div className={classes.container}>
-            <h2 className={classes.title} onClick={this.handleToggleDescriptionClick}>Insertion Sort</h2>
-            {this.props.showDescription && <div>
-              <p>Insertion sort iterates, consuming one input element each repetition, and growing a sorted output list. At each iteration, insertion sort removes one element from the input data, finds the location it belongs within the sorted list, and inserts it there. It repeats until no input elements remain.</p>
-              <p>Enter array [6, 5, 3, 1, 8, 7, 2, 4] to see an animated demonstration of the algorithm.</p>
-              <h4 className={classes.sourceCode}>Source Code</h4>
-              {this.makeSource()}
-            </div>}
+            <h2
+              className={classes.title}
+              onClick={this.handleToggleDescriptionClick}>
+              Insertion Sort
+            </h2>
+            {this.props.showDescription &&
+              <div>
+                <p>
+                  Insertion sort iterates, consuming one input element each
+                  repetition, and growing a sorted output list. At each
+                  iteration, insertion sort removes one element from the input
+                  data, finds the location it belongs within the sorted list,
+                  and inserts it there. It repeats until no input elements
+                  remain.
+                </p>
+                <p>
+                  Enter array [6, 5, 3, 1, 8, 7, 2, 4] to see an animated
+                  demonstration of the algorithm.
+                </p>
+                <h4 className={classes.sourceCode}>Source Code</h4>
+                {this.makeSource()}
+              </div>}
             <div className={classes.inputRow}>
               <TextField
                 id="unsortedArray"
@@ -366,30 +395,80 @@ class Sort extends Component {
                 className={classes.textField}
                 value={this.state.unsortedArrayStr}
                 onChange={this.handleUnsortedArrayChange}
-                margin="normal"/>
-              <Button raised disabled={!this.state.validArray} onClick={this.handleSortClick}>Sort</Button>
-              <Button raised className={classes.reset} onClick={this.handleResetClick}>Reset</Button>
+                margin="normal"
+              />
+              <Button
+                raised
+                disabled={!this.state.validArray}
+                onClick={this.handleSortClick}>
+                Sort
+              </Button>
+              <Button
+                raised
+                className={classes.reset}
+                onClick={this.handleResetClick}>
+                Reset
+              </Button>
             </div>
 
-            {this.state.validArray && <div className={classes.row}>
-              <h4 className={classes.label}>Unsorted Array</h4>
-            </div>}
-            {this.state.validArray && <div className={classes.row}>
-              {this.state.unsortedArray.map((item, index) => <Avatar key={'unsorted'+index} className={classes.orangeAvatar}>{item.toString()}</Avatar>)}
-            </div>}
+            {this.state.validArray &&
+              <div className={classes.row}>
+                <h4 className={classes.label}>Unsorted Array</h4>
+              </div>}
+            {this.state.validArray &&
+              <div className={classes.row}>
+                {this.state.unsortedArray.map((item, index) =>
+                  <Avatar
+                    key={'unsorted' + index}
+                    className={classes.orangeAvatar}>
+                    {item.toString()}
+                  </Avatar>
+                )}
+              </div>}
 
-            {this.props.sortedArray && <div className={classes.row}>
-              <h4 className={classes.label}>Sorted Array</h4>
-            </div>}
-            {this.props.sortedArray && <div className={classes.row}>
-              {this.props.sortedArray.map((item, index) => <Avatar key={'sorted'+index} className={classes.blueAvatar}>{item.toString()}</Avatar>)}
-            </div>}
+            {this.props.sortedArray &&
+              <div className={classes.row}>
+                <h4 className={classes.label}>Sorted Array</h4>
+              </div>}
+            {this.props.sortedArray &&
+              <div className={classes.row}>
+                {this.props.sortedArray.map((item, index) =>
+                  <Avatar key={'sorted' + index} className={classes.blueAvatar}>
+                    {item.toString()}
+                  </Avatar>
+                )}
+              </div>}
 
-            {showAnimation && <Button raised className={classes.showHideAnimation} onClick={this.handleShowHideAnimationClick}>{propsShowAnimation ? 'Hide Animation' : 'Show Animation'}</Button>}
-            {this.props.steps && <Button raised className={classes.showHideSteps} onClick={this.handleShowHideStepsClick}>{this.props.showSteps ? 'Hide Steps' : 'Show Steps'}</Button>}
-            {this.props.steps && <Button raised className={classes.logSteps} onClick={this.handleLogStepsClick}>Log Steps</Button>}
-            {propsShowAnimation && <img className={classes.animation} id="animation" src={animation} alt="Animation"/>}
-            {this.props.showSteps && this.props.steps.map((step, index) => this.makeStep(step, index))}
+            {showAnimation &&
+              <Button
+                raised
+                className={classes.showHideAnimation}
+                onClick={this.handleShowHideAnimationClick}>
+                {propsShowAnimation ? 'Hide Animation' : 'Show Animation'}
+              </Button>}
+            {this.props.steps &&
+              <Button
+                raised
+                className={classes.showHideSteps}
+                onClick={this.handleShowHideStepsClick}>
+                {this.props.showSteps ? 'Hide Steps' : 'Show Steps'}
+              </Button>}
+            {this.props.steps &&
+              <Button
+                raised
+                className={classes.logSteps}
+                onClick={this.handleLogStepsClick}>
+                Log Steps
+              </Button>}
+            {propsShowAnimation &&
+              <img
+                className={classes.animation}
+                id="animation"
+                src={animation}
+                alt="Animation"
+              />}
+            {this.props.showSteps &&
+              this.props.steps.map((step, index) => this.makeStep(step, index))}
           </div>
         </div>
 
@@ -397,7 +476,8 @@ class Sort extends Component {
           open={this.props.leftDrawerOpen}
           history={this.props.history}
           onRequestClose={this.props.closeLeftDrawer}
-          onClick={this.props.closeLeftDrawer} />
+          onClick={this.props.closeLeftDrawer}
+        />
 
       </div>
     )
@@ -408,7 +488,6 @@ Sort.propTypes = {
   classes: PropTypes.object.isRequired,
 }
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(withStyles(styles)(Sort))
+export default connect(mapStateToProps, mapDispatchToProps)(
+  withStyles(styles)(Sort)
+)

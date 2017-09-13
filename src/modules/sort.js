@@ -13,7 +13,7 @@ const initialState = {
   steps: null,
   showSteps: false,
   showAnimation: 0,
-  showDescription: false
+  showDescription: false,
 }
 
 export default (state = initialState, action) => {
@@ -22,19 +22,19 @@ export default (state = initialState, action) => {
       return {
         ...state,
         steps: [],
-        sorting: true
+        sorting: true,
       }
 
     case END_SORTING:
       return {
         ...state,
-        sorting: false
+        sorting: false,
       }
 
     case ADD_STEP:
       return {
         ...state,
-        steps: state.steps.concat([action.payload])
+        steps: state.steps.concat([action.payload]),
       }
 
     case RESET:
@@ -44,31 +44,31 @@ export default (state = initialState, action) => {
         sortedArray: null,
         sorting: false,
         showSteps: false,
-        showAnimation: 0
+        showAnimation: 0,
       }
 
     case SET_SORTED_ARRAY:
       return {
         ...state,
-        sortedArray: action.payload
+        sortedArray: action.payload,
       }
 
     case TOGGLE_STEPS:
       return {
         ...state,
-        showSteps: !state.showSteps
+        showSteps: !state.showSteps,
       }
 
     case TOGGLE_ANIMATION:
       return {
         ...state,
-        showAnimation: ++state.showAnimation
+        showAnimation: ++state.showAnimation,
       }
 
     case TOGGLE_DESCRIPTION:
       return {
         ...state,
-        showDescription: !state.showDescription
+        showDescription: !state.showDescription,
       }
 
     default:
@@ -79,7 +79,7 @@ export default (state = initialState, action) => {
 export const beginSorting = () => {
   return dispatch => {
     dispatch({
-      type: BEGIN_SORTING
+      type: BEGIN_SORTING,
     })
   }
 }
@@ -87,16 +87,16 @@ export const beginSorting = () => {
 export const endSorting = () => {
   return dispatch => {
     dispatch({
-      type: END_SORTING
+      type: END_SORTING,
     })
   }
 }
 
-export const addStep = (step) => {
+export const addStep = step => {
   return dispatch => {
     dispatch({
       type: ADD_STEP,
-      payload: step
+      payload: step,
     })
   }
 }
@@ -104,7 +104,7 @@ export const addStep = (step) => {
 export const reset = () => {
   return dispatch => {
     dispatch({
-      type: RESET
+      type: RESET,
     })
   }
 }
@@ -112,7 +112,7 @@ export const reset = () => {
 export const toggleSteps = () => {
   return dispatch => {
     dispatch({
-      type: TOGGLE_STEPS
+      type: TOGGLE_STEPS,
     })
   }
 }
@@ -120,16 +120,16 @@ export const toggleSteps = () => {
 export const toggleAnimation = () => {
   return dispatch => {
     dispatch({
-      type: TOGGLE_ANIMATION
+      type: TOGGLE_ANIMATION,
     })
   }
 }
 
-export const setSortedArray = (arr) => {
+export const setSortedArray = arr => {
   return dispatch => {
     dispatch({
       type: SET_SORTED_ARRAY,
-      payload: arr
+      payload: arr,
     })
   }
 }

@@ -9,14 +9,14 @@ import IconButton from 'material-ui/IconButton'
 import DrawerIcon from 'mdi-react/MenuIcon'
 
 export const TitleBar = ({title, onOpenDrawer}) => {
-
   return (
     <AppBar position="static">
       <Toolbar disableGutters>
-        {onOpenDrawer && <IconButton>
-          <DrawerIcon onClick={onOpenDrawer} />
-        </IconButton>}
-        {!onOpenDrawer && <IconButton disabled/>}
+        {onOpenDrawer &&
+          <IconButton>
+            <DrawerIcon onClick={onOpenDrawer} />
+          </IconButton>}
+        {!onOpenDrawer && <IconButton disabled />}
         <Typography type="title" color="inherit">
           {title}
         </Typography>
@@ -27,5 +27,5 @@ export const TitleBar = ({title, onOpenDrawer}) => {
 
 TitleBar.propTypes = {
   onOpenDrawer: PropTypes.func,
-  title: PropTypes.string
+  title: PropTypes.string,
 }

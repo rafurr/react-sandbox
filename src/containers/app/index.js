@@ -1,8 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Route, Switch, BrowserRouter } from 'react-router-dom'
-import { bindActionCreators } from 'redux'
-import { connect } from 'react-redux'
+import {Route, Switch, BrowserRouter} from 'react-router-dom'
+import {bindActionCreators} from 'redux'
+import {connect} from 'react-redux'
 
 import Home from '../home'
 import Sort from '../sort'
@@ -12,21 +12,22 @@ import Counter from '../counter'
 import About from '../about'
 import Error404 from '../error404'
 
-import {
-  openLeftDrawer,
-  closeLeftDrawer
-} from '../../modules/view'
+import {openLeftDrawer, closeLeftDrawer} from '../../modules/view'
 
 const mapStateToProps = state => ({
   leftDrawerOpen: state.view.leftDrawerOpen,
 })
 
-const mapDispatchToProps = dispatch => bindActionCreators({
-  openLeftDrawer,
-  closeLeftDrawer
-}, dispatch)
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(
+    {
+      openLeftDrawer,
+      closeLeftDrawer,
+    },
+    dispatch
+  )
 
-const App = () => (
+const App = () =>
   <BrowserRouter>
     <Switch>
       <Route exact path="/" component={Home} />
@@ -38,13 +39,9 @@ const App = () => (
       <Route path="*" component={Error404} />
     </Switch>
   </BrowserRouter>
-)
 
 App.propTypes = {
-  classes: PropTypes.object
+  classes: PropTypes.object,
 }
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-) (App)
+export default connect(mapStateToProps, mapDispatchToProps)(App)

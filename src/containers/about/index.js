@@ -1,52 +1,52 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
-import { bindActionCreators } from 'redux'
-import { connect } from 'react-redux'
+import {bindActionCreators} from 'redux'
+import {connect} from 'react-redux'
 
-import { withStyles } from 'material-ui/styles'
+import {withStyles} from 'material-ui/styles'
 import Button from 'material-ui/Button'
 
 import HomeIcon from 'mdi-react/HomeCircleIcon'
 
 import {TitleBar, LeftDrawer} from '../../components'
 
-import {
-  openLeftDrawer,
-  closeLeftDrawer
-} from '../../modules/view'
+import {openLeftDrawer, closeLeftDrawer} from '../../modules/view'
 
 const mapStateToProps = state => ({
-  leftDrawerOpen: state.view.leftDrawerOpen
+  leftDrawerOpen: state.view.leftDrawerOpen,
 })
 
-const mapDispatchToProps = dispatch => bindActionCreators({
-  openLeftDrawer,
-  closeLeftDrawer
-}, dispatch)
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(
+    {
+      openLeftDrawer,
+      closeLeftDrawer,
+    },
+    dispatch
+  )
 
 const styles = {
   fixedTop: {
     position: 'fixed',
     width: '100%',
     top: 0,
-    zIndex: 1000
+    zIndex: 1000,
   },
   scrollableContainer: {
     top: 0,
     marginTop: 56,
     marginBottom: 56,
-    position: 'absolute'
+    position: 'absolute',
   },
   container: {
-    margin: 10
+    margin: 10,
   },
   spacer: {
-    marginRight: 10
+    marginRight: 10,
   },
 }
 
 class About extends Component {
-
   render() {
     const classes = this.props.classes
 
@@ -77,7 +77,8 @@ class About extends Component {
           open={this.props.leftDrawerOpen}
           history={this.props.history}
           onRequestClose={this.props.closeLeftDrawer}
-          onClick={this.props.closeLeftDrawer} />
+          onClick={this.props.closeLeftDrawer}
+        />
 
       </div>
     )
@@ -85,10 +86,9 @@ class About extends Component {
 }
 
 About.propTypes = {
-  classes: PropTypes.object.isRequired
+  classes: PropTypes.object.isRequired,
 }
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(withStyles(styles)(About))
+export default connect(mapStateToProps, mapDispatchToProps)(
+  withStyles(styles)(About)
+)
