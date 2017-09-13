@@ -95,22 +95,20 @@ class Home extends Component {
               intended to demonstrate how to construct an application that uses
               React, Redux, React Router, Material-UI and other technologies.
               As time permits, this application will be updated to use
-              additional
-              front end and back end technologies. The application is a Single
-              Page Application (SPA) that is a responsive, mobile first
+              additional front end and back end technologies. The application is
+              a Single Page Application (SPA) that is a responsive, mobile first
               application.
             </p>
             <p>
               This application also demonstrates a few code challenges taken to
               the next level where the challenges are incorporated into the
               application in an attempt showcase the above mentioned
-              technologies
-              and my knowledge and expertise in using them. Initially a lot of
-              bootstrapping and experimentation had to be done latest versions
-              technologies. I have used the previous versions but want this
-              application to be current and a little bleeding edge. For example,
-              Material-UI is still in beta and is a departure from it previous
-              version.
+              technologies and my knowledge and expertise in using them.
+              Initially a lot of bootstrapping and experimentation had to be
+              done with latest versions of the chosen technologies. I have used
+              the previous versions but wanted this application to be current
+              and a little bleeding edge. For example, Material-UI is still in
+              beta and is a departure from it previous version.
             </p>
             <h2>How to use the application</h2>
             <p>
