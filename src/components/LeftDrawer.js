@@ -5,30 +5,38 @@ import List from 'material-ui/List'
 import {ListItem, ListItemText} from 'material-ui/List'
 import Drawer from 'material-ui/Drawer'
 
+import HomeIcon from 'mdi-react/HomeOutlineIcon'
+import SortIcon from 'mdi-react/SortAscendingIcon'
+import OnceIcon from 'mdi-react/RepeatOnceIcon'
+import CurryIcon from 'mdi-react/AltimeterIcon'
+import CounterIcon from 'mdi-react/NumericIcon'
+import AboutIcon from 'mdi-react/HelpIcon'
+import BadLinkIcon from 'mdi-react/LinkOffIcon'
+
 export const LeftDrawer = ({open, history, onClick, onRequestClose}) => {
   const sideList = (
     <div>
       <List>
         <ListItem button onClick={() => history.push('/')}>
-          <ListItemText primary="Home" />
+          <HomeIcon /><ListItemText primary="Home" />
         </ListItem>
         <ListItem button onClick={() => history.push('/sort')}>
-          <ListItemText primary="Sort" />
+          <SortIcon /><ListItemText primary="Sort" />
         </ListItem>
         <ListItem button onClick={() => history.push('/once')}>
-          <ListItemText primary="Once" />
+          <OnceIcon /><ListItemText primary="Once" />
         </ListItem>
         <ListItem button onClick={() => history.push('/curry')}>
-          <ListItemText primary="Curry" />
+          <CurryIcon /><ListItemText primary="Curry" />
         </ListItem>
         <ListItem button onClick={() => history.push('/counter')}>
-          <ListItemText primary="Counter" />
+          <CounterIcon /><ListItemText primary="Counter" />
         </ListItem>
         <ListItem button onClick={() => history.push('/about-us')}>
-          <ListItemText primary="About" />
+          <AboutIcon /><ListItemText primary="About" />
         </ListItem>
         <ListItem button onClick={() => history.push('/bad-link')}>
-          <ListItemText primary="Bad Link" />
+          <BadLinkIcon /><ListItemText primary="Bad Link" />
         </ListItem>
       </List>
     </div>

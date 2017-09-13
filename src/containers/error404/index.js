@@ -6,7 +6,7 @@ import {connect} from 'react-redux'
 import {withStyles} from 'material-ui/styles'
 import Button from 'material-ui/Button'
 
-import HomeIcon from 'mdi-react/HomeCircleIcon'
+import HomeIcon from 'mdi-react/HomeOutlineIcon'
 
 import '../../modules/view'
 

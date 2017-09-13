@@ -83,7 +83,7 @@ class Home extends Component {
                 <Link to="/about-us">About</Link>
               </header>}
 
-            <h2>Application is Under Construction.</h2>
+            <h2>Application is Under Construction</h2>
             <h4>Please drive carefully and pardon the dust.</h4>
             <p>
               Over the next few days and weeks I will be enhancing the UI/UX of
