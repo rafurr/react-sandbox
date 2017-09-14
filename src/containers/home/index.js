@@ -102,7 +102,7 @@ class Home extends Component {
             <p>
               This application also demonstrates a few code challenges taken to
               the next level where the challenges are incorporated into the
-              application in an attempt showcase the above mentioned
+              application in an attempt to showcase the above mentioned
               technologies and my knowledge and expertise in using them.
               Initially a lot of bootstrapping and experimentation had to be
               done with latest versions of the chosen technologies. I have used
