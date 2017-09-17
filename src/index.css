@@ -10,6 +10,7 @@ button:disabled {
 
 #root {
   height: 100%;
+  background: #F5F5F5;
 }
 
 #error-404-view {
@@ -19,6 +20,7 @@ button:disabled {
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
+  background-color: white;
 }
 
 #error-404-container {
