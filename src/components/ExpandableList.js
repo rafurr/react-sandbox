@@ -21,10 +21,12 @@ class ExpandableList extends Component {
     component: PropTypes.func.isRequired,
     componentProps: PropTypes.object,
     keyFn: PropTypes.func.isRequired,
+    selectedItem: PropTypes.object,
+    onItemClick: PropTypes.func,
   }
 
   buildListItems(items, classes, expanded) {
-    const {keyFn, component, componentProps} = this.props
+    const {keyFn, onItemClick, component, componentProps} = this.props
 
     const elements = items.map((item, index) => {
       return React.createElement(component, {
@@ -33,6 +35,7 @@ class ExpandableList extends Component {
         first: index === 0,
         expanded: expanded,
         key: keyFn(item),
+        onClick: onItemClick,
       })
     })
 
@@ -45,9 +48,12 @@ class ExpandableList extends Component {
 
   render() {
     const classes = this.props.classes
-    const {items} = this.props
+    const {items, keyFn, selectedItem} = this.props
 
-    const expandedIndex = 2
+    const selectedItemId = selectedItem ? keyFn(selectedItem) : -1
+    const expandedIndex = items.findIndex(
+      item => keyFn(item) === selectedItemId
+    )
 
     let elementsBefore, elementExpanded, elementsAfter
 

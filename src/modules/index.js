@@ -5,6 +5,7 @@ import sort from './sort'
 import once from './once'
 import curry from './curry'
 import counter from './counter'
+import inbox from './inbox'
 
 export default combineReducers({
   router: routerReducer,
@@ -13,4 +14,5 @@ export default combineReducers({
   once,
   curry,
   counter,
+  inbox,
 })

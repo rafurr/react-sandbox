@@ -69,11 +69,13 @@ const styles = {
   scrollableContainer: {
     top: 0,
     marginTop: 56,
-    marginBottom: 56,
     position: 'absolute',
+    width: '100%',
+    background: '#F5F5F5',
   },
   container: {
     margin: 10,
+    background: '#F5F5F5',
   },
   spacer: {
     marginRight: 10,

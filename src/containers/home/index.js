@@ -5,7 +5,6 @@ import {connect} from 'react-redux'
 
 import {withStyles} from 'material-ui/styles'
 import BottomNavigation, {BottomNavigationButton} from 'material-ui/BottomNavigation'
-import grey from 'material-ui/colors/grey'
 
 import {TitleBar, LeftDrawer} from '../../components'
 import ExpandableList from '../../components/ExpandableList'
@@ -17,14 +16,14 @@ import CurryIcon from 'mdi-react/AltimeterIcon'
 import CounterIcon from 'mdi-react/NumericIcon'
 
 import {openLeftDrawer, closeLeftDrawer} from '../../modules/view'
+import {selectItem, deselectItem} from '../../modules/inbox'
 
 import bundles from '../../mock/bundles'
 // import contacts from '../../mock/contacts'
 
-const ContainerBackgroundColor = grey[100]
-
 const mapStateToProps = state => ({
   leftDrawerOpen: state.view.leftDrawerOpen,
+  selectedItem: state.inbox.selectedItem,
 })
 
 const mapDispatchToProps = dispatch =>
@@ -32,6 +31,8 @@ const mapDispatchToProps = dispatch =>
     {
       openLeftDrawer,
       closeLeftDrawer,
+      selectItem,
+      deselectItem,
     },
     dispatch
   )
@@ -49,7 +50,7 @@ const styles = {
     marginBottom: 56,
     position: 'absolute',
     width: '100%',
-    background: ContainerBackgroundColor,
+    background: '#F5F5F5',
   },
   container: {},
   bottomNavigation: {
@@ -66,21 +67,36 @@ const styles = {
 }
 
 class Home extends Component {
+  componentDidMount() {
+    const root = document.querySelector('#root')
+    root.onclick = e => {
+      e.target.id === 'root' && this.props.deselectItem()
+    }
+  }
+
   handleNavigationChange = route => {
     this.props.history.push(route)
+  }
+
+  handleClick = () => {
+    this.props.deselectItem()
+  }
+
+  handleItemClick = (e, item) => {
+    e.stopPropagation()
+    item.read = true
+    this.props.selectItem(item)
   }
 
   render() {
     const classes = this.props.classes
 
-    // console.log('contacts', contacts)
-    // console.log('bundles', bundles)
+    const {selectedItem} = this.props
 
     const currentBundle = bundles[0]
-    // console.log('currentBundle', currentBundle)
 
     return (
-      <div>
+      <div onClick={this.handleClick}>
         <div className={classes.fixedTop}>
           <TitleBar title="Home" onOpenDrawer={this.props.openLeftDrawer} />
         </div>
@@ -90,6 +106,8 @@ class Home extends Component {
           <ExpandableList
             items={currentBundle.messages}
             keyFn={i => i.id}
+            onItemClick={this.handleItemClick}
+            selectedItem={selectedItem}
             component={Message}
             componentProps={{}}
           />
