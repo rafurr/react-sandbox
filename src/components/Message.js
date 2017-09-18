@@ -9,7 +9,12 @@ import Avatar from 'material-ui/Avatar'
 import Toolbar from 'material-ui/Toolbar'
 
 import IconButton from 'material-ui/IconButton'
-import DrawerIcon from 'mdi-react/MenuIcon'
+import PinIcon from 'mdi-react/PinIcon'
+import SnoozeIcon from 'mdi-react/ClockIcon'
+import DeleteIcon from 'mdi-react/DeleteIcon'
+import MarkIcon from 'mdi-react/CheckIcon'
+import MoveIcon from 'mdi-react/DotsVerticalIcon'
+import Tooltip from 'material-ui/Tooltip'
 
 import grey from 'material-ui/colors/grey'
 import deepOrange from 'material-ui/colors/deepOrange'
@@ -127,6 +132,8 @@ class Message extends Component {
           classes.center
         )
 
+    //todo: Tooltip below not working yet, Material-UI beta?
+
     return (
       <div
         className={classNames(
@@ -166,19 +173,23 @@ class Message extends Component {
               )}>
               <Toolbar disableGutters className={classNames(classes.toolbar)}>
                 <IconButton className={classNames(classes.toolbarButton)}>
-                  <DrawerIcon />
+                  <PinIcon />
                 </IconButton>
                 <IconButton className={classNames(classes.toolbarButton)}>
-                  <DrawerIcon />
+                  <SnoozeIcon />
+                </IconButton>
+                <Tooltip label="Delete" placement="bottom">
+                  <IconButton
+                    aria-label="Delete"
+                    className={classNames(classes.toolbarButton)}>
+                    <DeleteIcon />
+                  </IconButton>
+                </Tooltip>
+                <IconButton className={classNames(classes.toolbarButton)}>
+                  <MarkIcon />
                 </IconButton>
                 <IconButton className={classNames(classes.toolbarButton)}>
-                  <DrawerIcon />
-                </IconButton>
-                <IconButton className={classNames(classes.toolbarButton)}>
-                  <DrawerIcon />
-                </IconButton>
-                <IconButton className={classNames(classes.toolbarButton)}>
-                  <DrawerIcon />
+                  <MoveIcon />
                 </IconButton>
               </Toolbar>
             </div>}
