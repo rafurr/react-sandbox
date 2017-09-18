@@ -5,6 +5,7 @@ import {ConnectedRouter} from 'react-router-redux'
 import store, {history} from './store'
 
 import './index.css'
+import './styles/bootstrap.css'
 import App from './containers/app'
 
 import registerServiceWorker from './registerServiceWorker'

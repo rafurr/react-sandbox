@@ -4,38 +4,60 @@ import PropTypes from 'prop-types'
 import moment from 'moment'
 import classNames from 'classnames'
 
-import Avatar from 'material-ui/Avatar'
-import Typography from 'material-ui/Typography'
 import {withStyles} from 'material-ui/styles'
+import Avatar from 'material-ui/Avatar'
+import Toolbar from 'material-ui/Toolbar'
+
+import IconButton from 'material-ui/IconButton'
+import DrawerIcon from 'mdi-react/MenuIcon'
 
 import grey from 'material-ui/colors/grey'
 import deepOrange from 'material-ui/colors/deepOrange'
 
 const LightFontColor = grey[600]
 
-const styles = {
+const styles = theme => ({
+  root: theme.typography.body2,
   message: {
-    padding: '0.5rem',
+    padding: '0.5rem 1em 0 0.5rem',
     cursor: 'pointer',
   },
+  center: {
+    overflow: 'hidden',
+    whiteSpace: 'nowrap',
+    textOverflow: 'ellipsis',
+  },
+  primaryLine: {},
   avatar: {
     display: 'inline-block',
+    marginTop: 4,
   },
   from: {
-    width: 150,
     display: 'inline-block',
     fontWeight: 'bold',
+    verticalAlign: 'top',
+    marginTop: 4,
   },
   subject: {
     display: 'inline-block',
     fontWeight: 'bold',
+    marginTop: 4,
   },
   received: {
-    float: 'right',
+    width: '100%',
+    display: 'inline-block',
+    fontWeight: 'normal',
     color: LightFontColor,
+    marginTop: 4,
+  },
+  receivedTime: {
+    float: 'right',
+    paddingRight: 20,
   },
   content: {
     display: 'inline-block',
+    fontWeight: 'normal',
+    marginTop: 4,
   },
   top: {
     borderTop: '1px solid #d3d3d3',
@@ -59,7 +81,21 @@ const styles = {
   read: {
     fontWeight: 'normal',
   },
-}
+  toolbar: {
+    overflow: 'hidden',
+    whiteSpace: 'nowrap',
+    display: 'inline-block',
+    width: '100%',
+    fontWeight: 'normal',
+    height: '32px',
+    minHeight: '32px',
+  },
+  toolbarButton: {
+    fill: 'grey',
+    width: '32px',
+    height: '32px',
+  },
+})
 
 class Message extends Component {
   static propTypes = {
@@ -75,29 +111,107 @@ class Message extends Component {
     const received = moment(item.received).format('HH:mm A')
     const read = item.read ? classes.read : null
 
+    const subjectClasses = expanded
+      ? classNames(
+          'col-lg-8',
+          'col-md-6',
+          'col-sm-6',
+          'col-xs-4',
+          classes.center
+        )
+      : classNames(
+          'col-lg-10',
+          'col-md-9',
+          'col-sm-9',
+          'col-xs-8',
+          classes.center
+        )
+
     return (
       <div
-        className={classNames(classes.message, first ? null : classes.top)}
+        className={classNames(
+          classes.root,
+          classes.message,
+          first ? null : classes.top
+        )}
         onClick={onClick ? e => onClick(e, item) : () => {}}>
-        <span className={classNames(classes.avatar)}>
-          <Avatar className={classes.orangeAvatar}>F</Avatar>
-        </span>
-        <Typography className={classNames(classes.from, read)}>
-          {item.from}
-        </Typography>
-        <Typography className={classNames(classes.subject, read)}>
-          {item.subject}
-        </Typography>
+        <div className={classNames('row', classes.primaryLine)}>
+          <div
+            className={classNames(
+              'col-lg-2',
+              'col-md-3',
+              'col-sm-3',
+              'col-xs-4',
+              classes.center
+            )}>
+            <span className={classNames(classes.avatar)}>
+              <Avatar className={classes.orangeAvatar}>F</Avatar>
+            </span>
+            <span className={classNames(classes.from, classes.center, read)}>
+              {item.from}
+            </span>
+          </div>
+          <div className={subjectClasses}>
+            <span className={classNames(classes.subject, read)}>
+              {item.subject}
+            </span>
+          </div>
+          {expanded &&
+            <div
+              className={classNames(
+                'col-lg-2',
+                'col-md-3',
+                'col-sm-3',
+                'col-xs-4'
+              )}>
+              <Toolbar disableGutters className={classNames(classes.toolbar)}>
+                <IconButton className={classNames(classes.toolbarButton)}>
+                  <DrawerIcon />
+                </IconButton>
+                <IconButton className={classNames(classes.toolbarButton)}>
+                  <DrawerIcon />
+                </IconButton>
+                <IconButton className={classNames(classes.toolbarButton)}>
+                  <DrawerIcon />
+                </IconButton>
+                <IconButton className={classNames(classes.toolbarButton)}>
+                  <DrawerIcon />
+                </IconButton>
+                <IconButton className={classNames(classes.toolbarButton)}>
+                  <DrawerIcon />
+                </IconButton>
+              </Toolbar>
+            </div>}
+        </div>
         {expanded &&
-          <Typography className={classNames(classes.received)}>
-            {received}
-          </Typography>}
-        {expanded &&
-          <div>
-            <span className={classNames(classes.avatarSpacer)} />
-            <Typography className={classNames(classes.content)}>
-              {item.content}
-            </Typography>
+          <div className={classNames('row', classes.primaryLine)}>
+            <div
+              className={classNames(
+                'col-lg-10',
+                'col-md-9',
+                'col-sm-9',
+                'col-xs-8',
+                classes.center
+              )}>
+              <span className={classNames(classes.avatarSpacer)} />
+              <span className={classNames(classes.content, classes.center)}>
+                {item.content}
+              </span>
+            </div>
+            <div
+              className={classNames(
+                'col-lg-2',
+                'col-md-3',
+                'col-sm-3',
+                'col-xs-4',
+                classes.center
+              )}>
+              <span className={classNames(classes.received, classes.center)}>
+                <span className={classNames(classes.receivedTime)}>
+                  {received}
+                </span>
+              </span>
+            </div>
           </div>}
       </div>
     )
