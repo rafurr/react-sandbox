@@ -24,7 +24,7 @@ const LightFontColor = grey[600]
 const styles = theme => ({
   root: theme.typography.body2,
   message: {
-    padding: '0.5rem 1em 0 0.5rem',
+    padding: '0.5rem 1em 0.5rem 0.5rem',
     cursor: 'pointer',
   },
   center: {
