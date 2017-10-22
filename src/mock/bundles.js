@@ -9,7 +9,7 @@ const bundles = [
         subject:
           "Under Construction: An application duplicating Google's Inbox look and feel",
         content: 'Some Content 1',
-        received: '2017-09-17T16:34:03Z',
+        received: '2017-10-17T16:34:03Z',
         read: false,
       },
       {
@@ -19,7 +19,7 @@ const bundles = [
         subject:
           'In the meantime, feel free to explore the other pages via left drawer menu or bottom navigation bar',
         content: 'Some Content 2',
-        received: '2017-09-17T16:34:03Z',
+        received: '2017-10-17T16:34:03Z',
         read: false,
       },
       {
@@ -28,7 +28,7 @@ const bundles = [
         email: 'email3@gmail.com',
         subject: 'Some Subject 3',
         content: 'Some Content 3',
-        received: '2017-09-17T16:34:03Z',
+        received: '2017-10-17T16:34:03Z',
         read: true,
       },
       {
@@ -37,7 +37,7 @@ const bundles = [
         email: 'email4@gmail.com',
         subject: 'Some Subject 4',
         content: 'Some Content 4',
-        received: '2017-09-17T16:34:03Z',
+        received: '2017-10-17T16:34:03Z',
         read: true,
       },
       {
@@ -46,7 +46,7 @@ const bundles = [
         email: 'email5@gmail.com',
         subject: 'Some Subject 5',
         content: 'Some Content 5',
-        received: '2017-09-17T16:34:03Z',
+        received: '2017-10-17T16:34:03Z',
         read: true,
       },
     ],
@@ -60,7 +60,7 @@ const bundles = [
         email: 'email6@gmail.com',
         subject: 'Some Subject 6',
         content: 'Some Content 6',
-        received: '2017-09-17T16:34:03Z',
+        received: '2017-10-17T16:34:03Z',
         read: true,
       },
       {
@@ -69,7 +69,7 @@ const bundles = [
         email: 'email7@gmail.com',
         subject: 'Some Subject 7',
         content: 'Some Content 7',
-        received: '2017-09-17T16:34:03Z',
+        received: '2017-10-17T16:34:03Z',
         read: true,
       },
       {
@@ -78,7 +78,7 @@ const bundles = [
         email: 'email8@gmail.com',
         subject: 'Some Subject 8',
         content: 'Some Content 8',
-        received: '2017-09-17T16:34:03Z',
+        received: '2017-10-17T16:34:03Z',
         read: true,
       },
       {
@@ -87,7 +87,7 @@ const bundles = [
         email: 'email9@gmail.com',
         subject: 'Some Subject 9',
         content: 'Some Content 9',
-        received: '2017-09-17T16:34:03Z',
+        received: '2017-10-17T16:34:03Z',
         read: true,
       },
     ],
