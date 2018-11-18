@@ -6,11 +6,16 @@ import { connect } from "react-redux";
 import { withStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 
-import { TitleBar, LeftDrawer } from "../components";
+import { TitleBar, LeftDrawer, NumberInput } from "../components";
 
 import { openLeftDrawer, closeLeftDrawer } from "../reducers/view";
 
-import { increment, decrement, toggleDescription } from "../reducers/counter";
+import {
+  increment,
+  decrement,
+  setCount,
+  toggleDescription
+} from "../reducers/counter";
 
 const mapStateToProps = state => ({
   count: state.counter.count,
@@ -27,6 +32,7 @@ const mapDispatchToProps = dispatch =>
       closeLeftDrawer,
       increment,
       decrement,
+      setCount,
       toggleDescription
     },
     dispatch
@@ -131,6 +137,29 @@ class Counter extends Component {
                 Decrement
               </Button>
             </p>
+
+            <div>
+              <NumberInput
+                style={{ marginBottom: 10, width: 178 }}
+                name="NumberInput1"
+                // hintText={"Hint"}
+                // floatingLabelText={"Floating"}
+                min={0}
+                max={100}
+                value={this.props.count}
+                onChange={(e, c) => this.props.setCount(c)}
+              />
+              <NumberInput
+                style={{ marginBottom: 10, width: 178 }}
+                name="NumberInput1"
+                // hintText={"Hint"}
+                floatingLabelText={"Count"}
+                min={0}
+                max={100}
+                value={this.props.count}
+                onChange={(e, c) => this.props.setCount(c)}
+              />
+            </div>
           </div>
         </div>
         {ld}
